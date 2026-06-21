@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epistack-adversarial"
+version = "0.1.0"
+description = "Adversarial epistemic verification for AI-assisted knowledge bases"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Rahul Kumar"},
+]
+
+dependencies = [
+    "anthropic>=0.30.0",
+    "openai>=1.30.0",
+    "pyyaml>=6.0",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+epistack = "epistack.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

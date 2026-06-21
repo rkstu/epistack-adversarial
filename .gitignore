@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.env
+output/
+
+# Internal planning and competition strategy
+IMPLEMENTATION_PLAN.md
+docs/EARLY_FEEDBACK_FORM.md
+docs/SUBMISSION.md
+docs/PRIMARY_DOCUMENT.md
+docs/conor_infinitum/

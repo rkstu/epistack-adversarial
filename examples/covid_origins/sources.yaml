@@ -1,0 +1,98 @@
+# COVID-19 Origins Case Study — Source Registry
+# FLF Epistemic Case Study Competition
+#
+# This case is "contested/evolving" — multiple strong positions with ongoing debate.
+# The Rootclaim vs Peter Miller debate ($100K) provides a structured adversarial frame.
+
+case_name: covid_origins
+domain: virology and epidemiology
+domain_facts:
+  - SARS-CoV-2 was first identified in Wuhan, China in December 2019
+  - The Huanan Seafood Market was linked to many early cases
+  - The Wuhan Institute of Virology studies bat coronaviruses
+  - Gain-of-function research involves modifying viruses to study their properties
+  - Zoonotic spillover (natural origin) is the most common pathway for new human viruses
+
+questions:
+  - "What is the most likely origin of SARS-CoV-2?"
+  - "Was the Huanan Seafood Market the site of initial spillover or a secondary amplification site?"
+  - "Does the available evidence support or rule out a laboratory-associated incident?"
+
+sources:
+  - url: "https://www.astralcodexten.com/p/practically-a-book-review-rootclaim"
+    title: "Practically A Book Review: Rootclaim COVID Origins Debate"
+    type: blog
+    author: "Scott Alexander"
+    date_published: "2024-03-15"
+    credibility_signals:
+      peer_reviewed: false
+      citation_count: 50
+      author_h_index: 0
+      known_reliable: true
+      notes: "Detailed analysis of the Rootclaim debate by respected science blogger"
+
+  - url: "https://drive.google.com/file/d/1YhmkYB32RpGsXvQTsX4xZ0Yul1wiwh8Z/view"
+    title: "Judge Will's Decision — Rootclaim COVID Origins Debate"
+    type: official_doc
+    author: "Judge Will (anonymous)"
+    date_published: "2024-02-01"
+    credibility_signals:
+      peer_reviewed: false
+      notes: "Independent judge appointed for the $100K debate"
+
+  - url: "https://drive.google.com/file/d/1aHlhPd-16EOabzXhiajT5PBm3uVCAG3T/view"
+    title: "Judge Eric's Decision — Rootclaim COVID Origins Debate"
+    type: official_doc
+    author: "Judge Eric (anonymous)"
+    date_published: "2024-02-01"
+    credibility_signals:
+      peer_reviewed: false
+      notes: "Second independent judge for the $100K debate"
+
+  - url: "https://michaelweissman.substack.com/p/an-inconvenient-probability-v57"
+    title: "An Inconvenient Probability — Bayesian Analysis of COVID Origins"
+    type: blog
+    author: "Michael Weissman"
+    date_published: "2024-01-15"
+    credibility_signals:
+      peer_reviewed: false
+      author_h_index: 30
+      notes: "Physics professor applying formal Bayesian methods to origins question"
+
+  - url: "https://blog.rootclaim.com/covid-origins-debate-response-to-scott-alexander/"
+    title: "Rootclaim Response to Scott Alexander's Analysis"
+    type: blog
+    author: "Rootclaim"
+    date_published: "2024-04-01"
+    credibility_signals:
+      peer_reviewed: false
+      notes: "Rootclaim's official response after losing the debate and paying $100K"
+
+  - url: "https://www.youtube.com/watch?v=Y1vaooTKHCM"
+    title: "Rootclaim vs Peter Miller Debate — Session 1"
+    type: debate_transcript
+    date_published: "2024-01-15"
+    credibility_signals:
+      notes: "Video transcript of the formal judged debate"
+
+  - url: "https://www.youtube.com/watch?v=KdORmvU8MLI"
+    title: "Rootclaim vs Peter Miller Debate — Session 2"
+    type: debate_transcript
+    date_published: "2024-01-22"
+    credibility_signals:
+      notes: "Video transcript of the formal judged debate"
+
+  - url: "https://www.youtube.com/watch?v=d1dbfoK8nSE"
+    title: "Rootclaim vs Peter Miller Debate — Session 3"
+    type: debate_transcript
+    date_published: "2024-01-29"
+    credibility_signals:
+      notes: "Video transcript of the formal judged debate"
+
+# Additional high-value sources to ingest:
+# - Worobey et al. 2022 "The Huanan Seafood Wholesale Market in Wuhan was the early epicenter" (Science)
+# - Pekar et al. 2022 "The molecular epidemiology of multiple zoonotic origins of SARS-CoV-2" (Science)
+# - Bruttel et al. 2022 "Endonuclease fingerprint indicates a synthetic origin" (preprint)
+# - Holmes et al. 2021 "The origins of SARS-CoV-2: A critical review" (Cell)
+# - US DOE classified assessment (2023) — low confidence lab leak
+# - FBI assessment — moderate confidence lab leak
