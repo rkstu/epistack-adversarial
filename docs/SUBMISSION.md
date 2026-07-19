@@ -11,8 +11,8 @@ Epistack is a tool for mapping disagreements. Instead of asking an AI "who is ri
 
 We tested it on three cases. The system produced three different diagnoses:
 
-- **COVID origins** is a real unresolved dispute with high-impact cruxes and verdicts that look more settled than the evidence supports.
-- **LHC black holes** is structurally settled — the graph shows why, without being told.
+- **COVID origins** is a real unresolved dispute with unresolved claims that matter a lot, and conclusions that went further than the evidence.
+- **LHC black holes** is settled — the system identifies this from graph structure, not from a topic label.
 - **Eggs and health** is mostly a framework mismatch — different studies are answering different questions, not disagreeing on facts.
 
 Total cost for all three: **$1**. Total time: **45 minutes**. 103 tests, 72 HTML pages, no hand-designed steps after source selection.
@@ -25,13 +25,13 @@ The main finding is that the Rootclaim debate's verdicts look more settled than 
 
 1. **All 9 verdict claims pick winners, but 46 dependency claims remain contested** (confidence between 0.3 and 0.7). The debate declared a resolution; the empirical disagreements underneath are still open. We call this "performed settling" — it's detectable from graph structure: verdict exists + dependencies are contested + the verdict crosses framework boundaries.
 
-2. **The largest driver of the 23-orders-of-magnitude divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis starts with P(lab leak) ≈ 1/200. Rootclaim starts at ~50% for Wuhan-origin pandemics. That 100× gap, before any evidence is weighed, propagates through everything. Both claims are in the system with verified quotes (claims `clm_0168` and `clm_0159`).
+2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200 (claim `clm_0168`). Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks (claim `clm_0159`). That gap — roughly two orders of magnitude in the prior alone — propagates through everything downstream. Both claims are in the system with verified source quotes.
 
 3. **The most important unresolved claim is empirical.** "WIV was conducting gain-of-function research in BSL-2 conditions" has the highest crux score (0.61) — meaning it's both uncertain and has the most downstream impact. Resolving it would change the most conclusions.
 
-4. **Five types of expertise are absent from all sources** — including virological genomics, epidemiological contact tracing, and laboratory safety whistleblowers. Identified by asking "what viewpoints are conspicuously missing?" rather than assuming.
+4. **Several relevant perspectives are absent from all sources** — including virological genomics, epidemiological contact tracing, and laboratory safety whistleblowers. Identified by asking "what viewpoints are conspicuously missing?" rather than assuming.
 
-The $100K bet format itself is relevant: it structurally prohibits both debaters from saying "I don't know." In our published research (arXiv:2605.02398, 67,221 evaluations across 11 models), this condition causes 8/11 AI models to fabricate. The human analogue: expressed confidence should be discounted by the structural incentive to never show uncertainty.
+The $100K bet format itself is relevant: both sides are rewarded for giving a confident answer, not for saying "I don't know." In our published research (arXiv:2605.02398, 67,221 evaluations across 11 models), a similar structural pressure causes 8/11 AI models to fabricate. The human analogue isn't identical, but the incentive points the same direction: expressed confidence should be discounted when the format penalizes uncertainty.
 
 ---
 
@@ -60,10 +60,10 @@ The full COVID site shows 3 positions (76 + 62 + 6 claims), 10 ranked cruxes, se
 ## Three Cases Show It Generalizes
 
 ### COVID-19 Origins — contested dispute
-230 claims, 1,242 edges, 3 positions, 10 cruxes. The system finds real unresolved disagreements and shows where verdicts outran evidence.
+230 claims, 1,242 edges, 3 positions, 10 cruxes. The system finds real unresolved disagreements and shows where the conclusions went further than the evidence.
 
 ### LHC Black Holes — settled science
-53 claims, 232 edges, 5 positions. 215 of 232 edges are `supports`. The safety argument forms an unbroken dependency chain. No contested cruxes remain. The system identifies "settled" from structure alone.
+53 claims, 232 edges, 5 positions. 215 of 232 edges are `supports`. The safety argument forms an unbroken dependency chain. No contested cruxes remain. The system identifies this as settled from graph structure, not from a topic label.
 
 ### Eggs & Health — framework mismatch
 60 claims, 219 edges, 11 `frames_differently` edges. Observational studies ask "what correlates with mortality?" while RCTs ask "what causally drives LDL?" They aren't contradicting each other — they're asking different questions. No single load-bearing crux exists. The "dispute" dissolves once you separate the frames.
@@ -129,13 +129,13 @@ The main failure mode for any AI-assisted epistemic tool is hallucinated or over
 
 1. **Every claim must have a source quote.** If the AI extracts a claim but can't point to where in the source text it comes from, the claim is rejected. 230/230 active COVID claims pass this check.
 
-2. **Overclaiming is caught by regex.** Phrases like "proves conclusively" or "irrefutably demonstrates" trigger flags. These are free ($0) checks that run before any expensive verification.
+2. **Obvious overclaiming is caught cheaply before model-based verification.** Phrases like "proves conclusively" or "irrefutably demonstrates" trigger flags via regex. This is a fast, free ($0) first pass — not the core defense, but it catches the easy cases immediately.
 
 3. **Entailment is verified by a second model.** "Does the quote actually support the claim?" catches cases where the AI overstates what the source says (e.g., upgrading "may contribute" to "causes").
 
 4. **Cross-provider checks catch correlated blind spots.** A different model family verifies the highest-stakes claims. 121 verification flags fired across the COVID run — each dropped a fabricated or overstated claim to low confidence rather than silently passing it.
 
-**What about deliberate source manipulation?** A low-quality challenge cannot override high-confidence established claims. New evidence must be stronger than existing evidence to supersede it. Adversarial flooding doesn't work.
+**What about deliberate source manipulation?** A low-quality challenge cannot override high-confidence established claims. New evidence must be stronger than the evidence it tries to replace. This makes adversarial flooding harder — you can't drown out well-sourced claims with volume alone.
 
 ---
 
@@ -147,19 +147,19 @@ The main failure mode for any AI-assisted epistemic tool is hallucinated or over
 | 2 | 88 | 14 | 0 | $0.05 | 12 min |
 | 5 | 230 | 1,242 | 10 | $0.30 | 15 min |
 
-More sources produce a denser disagreement map. More connections between claims means the crux scores become more precise — more paths exist for a claim to influence conclusions through.
+More sources produce a denser disagreement map. More connections between claims means the crux scores become more stable and informative — more paths exist for a claim to influence conclusions through.
 
-The only human step is choosing sources. Everything after that is automated. As language models improve, extraction and classification improve — the pipeline benefits from better models without code changes.
+The only human step is choosing sources. Everything after that is automated. As extraction models improve, the pipeline gets better without code changes.
 
-**Knowledge compounds**: new evidence enters via `add_challenge.py` and cascades through confidence and crux scores. The store is append-only (like git). Multiple researchers can add claims independently; the system integrates them without manual restructuring. Another team could pick up the `events.jsonl` file and build different analysis on top.
+**New evidence can be added later**: `add_challenge.py` adds counter-evidence that cascades through confidence and crux scores. The store is append-only (like git). Multiple researchers can add claims independently; the system integrates them without manual restructuring. Another team could pick up the `events.jsonl` file and build different analysis on top.
 
 ---
 
 ## What We Think Is Most Novel
 
-1. **Performed settling as a detectable property.** Debates can declare winners without resolving underlying evidence. This is computable from graph structure: verdict exists + dependency claims remain contested + framework boundaries crossed. We think this is the part most likely to be new to judges.
+1. **Performed settling as a detectable property.** Debates can declare winners without resolving underlying evidence. This is computable from graph structure: verdict exists + dependency claims remain contested + framework boundaries crossed. We think this is the most original part of the submission.
 
-2. **Connecting compliance research to the specific debate.** The $100K bet creates conditions identical to those causing AI fabrication in controlled experiments. This observation connects AI safety research to the debate being analyzed — it's not just about AI, it's about the debate format itself.
+2. **Connecting compliance research to the specific debate.** The $100K bet creates a similar structural pressure to the conditions that cause AI fabrication in controlled experiments. This connects AI safety research to the debate being analyzed — it's not just about AI, it's about the debate format itself.
 
 3. **Framework mismatches as a separate structural category.** What looks like disagreement can be two traditions asking different questions. The correct response is "which question are you asking?" not "who's right?"
 
