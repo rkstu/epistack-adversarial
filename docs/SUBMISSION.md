@@ -3,7 +3,7 @@
 **FLF Epistemic Case Study Competition — Final Submission**
 **Author**: Rahul Kumar
 **Date**: July 2026
-**Repo**: https://github.com/rkstu/epistack-adversarial
+**Repo**: [github.com/rkstu/epistack-adversarial](https://github.com/rkstu/epistack-adversarial)
 
 ---
 
@@ -23,15 +23,15 @@ Total cost for all three: **$1**. Total time: **45 minutes**. 103 tests, 72 HTML
 
 The main finding is that the Rootclaim debate's verdicts look more settled than the underlying evidence warrants. Specifically:
 
-1. **All 9 verdict claims pick winners, but 46 dependency claims remain contested** (confidence between 0.3 and 0.7). The debate declared a resolution; the empirical disagreements underneath are still open. We call this "performed settling": the debate looks resolved on the surface, while the underlying factual questions are still open. It is detectable from graph structure: verdict exists + dependencies are contested + the verdict crosses framework boundaries.
+1. **All 9 verdict claims pick winners, but their dependency claims remain contested** (confidence between 0.3 and 0.7). The most prominent verdict has 46 contested dependencies; the worst case has 92. The debate declared a resolution; the empirical disagreements underneath are still open. We call this "performed settling": the debate looks resolved on the surface, while the underlying factual questions are still open. It is detectable from graph structure: verdict exists + dependencies are contested + the verdict crosses framework boundaries.
 
-2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200 (claim `clm_0168`). Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks (claim `clm_0159`). That gap — roughly two orders of magnitude in the prior alone — propagates through everything downstream. Both claims are in the system with verified source quotes.
+2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200. Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks. That gap, roughly two orders of magnitude in the prior alone, propagates through everything downstream. Both claims are in the system with verified source quotes (inspectable in the HTML output).
 
 3. **The most important unresolved claim is empirical.** "WIV was conducting gain-of-function research in BSL-2 conditions" has the highest crux score (0.61) — meaning it's both uncertain and has the most downstream impact. Resolving it would change the most conclusions.
 
 4. **Several relevant perspectives are absent from all sources** — including virological genomics, epidemiological contact tracing, and laboratory safety whistleblowers. Identified by asking "what viewpoints are conspicuously missing?" rather than assuming.
 
-The $100K bet format itself is relevant: both sides are rewarded for giving a confident answer, not for saying "I don't know." In our published research (arXiv:2605.02398, 67,221 evaluations across 11 models), a similar structural pressure causes 8/11 AI models to fabricate. The human analogue isn't identical, but the incentive points the same direction: expressed confidence should be discounted when the format penalizes uncertainty.
+One observation about the debate format: when $100K is on the line, both sides are rewarded for confident answers, not for saying "I don't know." We studied a structurally similar pressure in AI systems (arXiv:2605.02398, 67,221 evaluations): when a prompt format penalizes uncertainty, 8/11 models fabricate rather than admit ignorance. The human case is not identical, but the incentive shape is the same. Both debaters' expressed confidence should be read with that structural pressure in mind.
 
 ---
 
@@ -84,7 +84,7 @@ echo 'OPENROUTER_API_KEY=your-key' > .env
 uv run python run_pipeline.py covid_origins --phase full --budget 1.0
 ```
 
-The `$1` figure in the intro is the total across all 3 cases. Each case costs about $0.20–0.30.
+Requires Python 3.11+ and [uv](https://docs.astral.sh/uv/) (`curl -LsSf https://astral.sh/uv/install.sh | sh`). The `$1` figure in the intro is the total across all 3 cases. Each case costs about $0.20–0.30.
 
 ---
 
@@ -144,7 +144,7 @@ The main failure mode for any AI-assisted epistemic tool is hallucinated or over
 | 2 | 88 | 14 | 0 | $0.05 | 12 min |
 | 5 | 230 | 1,242 | 10 | $0.30 | 15 min |
 
-More sources produce a denser disagreement map. More connections between claims means the crux scores become more stable and informative — more paths exist for a claim to influence conclusions through.
+More sources produce a denser disagreement map. More connections between claims means the crux scores become more stable and informative. We have not tested beyond 8 sources. We expect denser graphs continue to improve crux detection, but have not verified this at larger scale.
 
 The only human step is choosing sources. Everything after that is automated. As extraction models improve, the pipeline gets better without code changes.
 
@@ -167,7 +167,7 @@ The only human step is choosing sources. Everything after that is automated. As 
 ## Honest Unknowns
 
 1. **Whether confidence scores are calibrated** — we report relative rankings. When we say 0.23, that means "contested relative to this graph," not "23% chance of being true."
-2. **Whether this beats a skilled human** — Scott Alexander spent months on COVID origins. We process 5 sources in 15 minutes. Different trade-off: faster and more structured, but a domain expert may catch things extraction misses.
+2. **Whether this beats manual analysis** — we process 5 sources in 15 minutes. A domain expert working manually may catch things that automated extraction misses. The trade-off is speed and structure vs depth on any single source.
 3. **Whether the discourse map changes minds** — no reader study data.
 4. **Whether defenses transfer to evaluative prompts** — validated on "is this claim in the source?" questions, not "evaluate this argument."
 5. **Whether findings survive domain expert scrutiny** — verified with 4 automated layers, not with virologists.
@@ -176,13 +176,13 @@ The only human step is choosing sources. Everything after that is automated. As 
 
 ## References
 
-1. Kumar, R. (2026). arXiv:2605.02398 — Compliance-Induced Epistemic Collapse. 67,221 evaluations, 11 frontier models.
+1. Kumar, R. (2026). [The Compliance Trap: How Structural Constraints Degrade Frontier AI Metacognition Under Adversarial Pressure](https://arxiv.org/abs/2605.02398). 67,221 evaluations, 11 frontier models.
 2. Chan & Darwiche (2004). Sensitivity Analysis in Bayesian Networks (UAI).
 3. Howard (1966). Information Value Theory (IEEE).
-4. Graphiti, arXiv:2501.13956 — bi-temporal validity.
-5. FPF, arXiv:2601.21116 — confidence-gated supersession.
+4. Graphiti, [arXiv:2501.13956](https://arxiv.org/abs/2501.13956). Bi-temporal validity.
+5. FPF, [arXiv:2601.21116](https://arxiv.org/abs/2601.21116). Confidence-gated supersession.
 6. Wilson (1927). Probable Inference (JASA).
 
 ---
 
-**Full documentation**: [docs/METHODOLOGY.md](METHODOLOGY.md) (epistemic approach, no code) · [docs/PIPELINE.md](PIPELINE.md) (technical reference, all modules) · [DEVELOPMENT.md](../DEVELOPMENT.md) (full decision trail, Day 0–16)
+**Full documentation on GitHub**: [docs/METHODOLOGY.md](https://github.com/rkstu/epistack-adversarial/blob/main/docs/METHODOLOGY.md) (epistemic approach, no code) · [docs/PIPELINE.md](https://github.com/rkstu/epistack-adversarial/blob/main/docs/PIPELINE.md) (technical reference, all modules) · [DEVELOPMENT.md](https://github.com/rkstu/epistack-adversarial/blob/main/DEVELOPMENT.md) (full decision trail, Day 0–16)
