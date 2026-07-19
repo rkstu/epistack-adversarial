@@ -6,72 +6,66 @@ Takes existing debate materials (papers, transcripts, blog posts) and produces n
 
 Submitted to the FLF Epistemic Case Study Competition, July 2026.
 
-### Project Status
+---
 
-| Aspect | State |
-|--------|-------|
-| **Pipeline** | ✅ Complete — 15 modules, 4,000+ lines, 103 tests |
-| **COVID case** | ✅ Complete — 230 claims, 1,242 edges, 3 positions, 10 cruxes, settling detected |
-| **LHC case** | ✅ Complete — 53 claims, 232 edges, 5 positions (settled science) |
-| **Eggs case** | ✅ Complete — 60 claims, 219 edges, 11 `frames_differently` edges |
-| **HTML output** | ✅ 72 pages across 3 cases (pre-built, viewable immediately) |
+## What It Found
 
-**Total cost for all 3 cases: ~$1.** Total time: ~45 minutes of pipeline execution.
+Applied to the Rootclaim COVID origins debate ($100K bet, 5 sources, 15 minutes):
+
+1. **The debate performed settling.** All 9 verdict claims declared winners while 46 dependency claims remain contested (confidence 0.3–0.7). The $100K bet format structurally prohibits "I don't know" — both debaters' expressed confidence is inflated regardless of argument quality (arXiv:2605.02398).
+2. **The 23-OOM Bayesian divergence traces to a single prior.** Weissman assigns P(lab leak) ≈ 1/200. Rootclaim assigns ~50% for Wuhan-origin pandemics. That 100× gap before any evidence is weighed accounts for most of the spread.
+3. **The top crux is empirical and traceable.** WIV conducting gain-of-function in BSL-2 conditions (crux score 0.61) is the claim whose resolution would most change downstream conclusions.
+4. **Five perspectives are structurally absent.** Virological genomics, contact tracing, and lab safety whistleblowers — identified adversarially, not by assumption.
+
+The same pipeline identifies LHC black holes as settled (graph structure shows why) and eggs & health as a framework mismatch, not a dispute (11 `frames_differently` edges).
 
 ---
 
-## Quick Start: View the Output
-
-**No API keys needed.** Pre-built HTML sites are included:
+## Verify Without an API Key
 
 ```bash
-# Open COVID-19 Origins discourse map (the flagship case)
-open output/covid_origins/index.html
-
-# Also available:
-open output/lhc_black_holes/index.html   # Settled science case
-open output/eggs_health/index.html        # Vague/open-ended case
+git clone https://github.com/rkstu/epistack-adversarial
+cd epistack-adversarial
+uv sync
+uv run python scripts/verify.py
 ```
 
-Each site shows: positions, live cruxes (empirical claims whose resolution would most change the picture), performed settling detection, empty chairs (missing perspectives), and full claim provenance with source quotes.
+This runs all 103 unit tests and validates the pre-built output. No API key needed. Exit 0 = everything passes.
 
 ---
 
-## What This Does
+## View the Output
 
-Takes existing debate materials (papers, transcripts, judge decisions, blog posts) and produces a **structural map of disagreement** — not a summary, not a verdict, but a navigable picture of WHERE and WHY people disagree.
+Pre-built HTML sites are included — open directly in a browser:
 
-**COVID-19 Origins result** (5 sources, $0.30, 15 minutes):
-- 3 positions: Zoonotic spillover (76 claims) vs Lab leak (62 claims) vs Methodology critique (6 claims)
-- 10 empirical cruxes (top: "WIV gain-of-function in BSL-2 conditions")
-- 9 verdicts detected as "performed settling" (declared winners without resolving underlying disputes)
-- 5 empty chairs (perspectives absent from the evidence)
+```bash
+open output/covid_origins/index.html    # Flagship: contested case
+open output/lhc_black_holes/index.html  # Settled science case
+open output/eggs_health/index.html      # Framework mismatch case
+```
+
+Each site shows positions, cruxes ranked by entropy × cascade influence, performed settling alerts, empty chairs, and full claim provenance with source quotes.
 
 ---
 
 ## Run It Yourself
 
-Requires an OpenRouter API key (or Anthropic/OpenAI — config-driven, any provider works):
+Requires an API key from any provider (OpenRouter, Anthropic, or OpenAI — config-driven):
 
 ```bash
-# Setup
-git clone https://github.com/rkstu/epistack-adversarial
-cd epistack-adversarial
-uv sync
-
-# Create .env with your API key
+# Add your API key
 echo 'OPENROUTER_API_KEY=your-key-here' > .env
 
-# Run the full pipeline (produces HTML site)
+# Run full pipeline → produces HTML site
 uv run python run_pipeline.py covid_origins --phase full --budget 1.0
 # → output/covid_origins/index.html
 
-# Run other cases
+# Other cases
 uv run python run_pipeline.py lhc_black_holes --phase full --budget 1.0
 uv run python run_pipeline.py eggs_health --phase full --budget 1.0
 ```
 
-To change models/providers, edit `config.yaml`. The pipeline is provider-agnostic — one YAML change switches from OpenRouter to Anthropic to OpenAI.
+To change models or providers: edit `config.yaml`. One YAML change switches from OpenRouter to Anthropic to OpenAI — no code changes.
 
 ---
 
@@ -84,64 +78,96 @@ uv run python scripts/add_challenge.py covid_origins \
     --source-url "https://www.nih.gov/p3co" \
     --source-label "NIH P3CO Review Board"
 
-# Re-run to see cascade effect
+# Re-run to see cascade
 uv run python run_pipeline.py covid_origins --phase full --budget 1.0
 ```
+
+New evidence enters the append-only store and cascades through all downstream confidence and crux scores — without modifying any existing claims.
+
+---
+
+## Results
+
+| Case | Sources | Claims | Edges | Cost | Time | Pages |
+|------|---------|--------|-------|------|------|-------|
+| COVID-19 Origins | 5 | 230 | 1,242 | $0.30 | 15 min | 29 |
+| LHC Black Holes | 4 | 53 | 232 | $0.20 | 10 min | 21 |
+| Eggs & Health | 5 | 60 | 219 | $0.25 | 12 min | 22 |
+| **Total** | **14** | **343** | **1,693** | **~$1** | **~37 min** | **72** |
 
 ---
 
 ## Architecture
 
 ```
-config.yaml → Sources → Fetch → Extraction (grounded quotes) → 4-Layer Verification
-    → Event-Sourced Store → Relationship Detection → Confidence Model
-    → Crux Detection → Discourse Mapping → Settling Detection → HTML Site
+config.yaml (single source of truth — models, thresholds, budget)
+     │
+sources.yaml → Fetch (web/PDF/YouTube/local)
+     │
+     ▼
+Extraction (grounded quotes, 3-5 claims/chunk)
+     │
+4-Layer Verification:
+  L1: Quote containment (free)
+  L2: Overclaiming regex (free)
+  L3: NLI entailment (~$0.01)
+  L4: Cross-provider check (~$0.01, top 10% only)
+     │
+     ▼
+events.jsonl (append-only, time-travel, supersession)
+     │
+     ├── Relationship Detection (embed → cosine → classify → dedup)
+     ├── Confidence Model (noisy-OR × quality product)
+     ├── Crux Detection (entropy × cascade BFS)
+     ├── Discourse Mapping (HDBSCAN + graph community detection)
+     ├── Settling Detection (dependency chain + framework analysis)
+     └── HTML Site (Jinja2 + Mermaid CDN)
 ```
 
-15 Python modules, 4,000+ lines, 103 tests. See [docs/PIPELINE.md](docs/PIPELINE.md) for full technical reference.
+15 Python modules, 4,000+ lines, 103 tests.
 
----
-
-## Key Innovation
-
-1. **Compliance-trap detection** (arXiv:2605.02398): Detects when AI is under pressure to fabricate, applies empirically-validated defenses
-2. **`frames_differently` edge type**: Distinguishes "positions asking different questions" from "positions disagreeing on facts"
-3. **Performed settling**: Detects when debates declared winners without resolving underlying cruxes
-4. **Graph-based position detection**: Finds opposing positions via contradiction edges, not just embedding similarity
-
----
-
-## Cost
-
-| Case | Sources | Claims | Edges | Cost | Time |
-|------|---------|--------|-------|------|------|
-| COVID-19 | 5 | 230 | 1,242 | $0.30 | 15 min |
-| LHC | 4 | 53 | 232 | $0.20 | 10 min |
-| Eggs | 5 | 60 | 219 | $0.25 | 12 min |
-| **Total** | **14** | **343** | **1,693** | **~$1** | **~37 min** |
+**Key innovations:**
+- **Compliance-trap detection** (arXiv:2605.02398): Detects G3 pressure before every LLM call, applies M2/M3 defenses validated on 5,110 evaluations
+- **`frames_differently` edge type**: Distinguishes framework mismatches from factual contradictions
+- **Performed settling detection**: Detects debates that declared winners without resolving cruxes
+- **Correlated evidence detection**: Prevents N citations of the same paper from counting as N independent lines
 
 ---
 
 ## Documentation
 
-| Document | What It Contains | When To Read |
-|----------|-----------------|--------------|
-| **This README** | Project status, quick start, how to run, cost table | First — orientation |
-| **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)** | Epistemic approach (crux detection, settling, framework mismatches), research basis, design decisions, limitations. No code. | To understand WHY this approach |
-| **[docs/PIPELINE.md](docs/PIPELINE.md)** | Every module explained, event schema, config reference, key design decisions table with rationale, acceptance criteria, edge progression debugging history, how to extend | To understand HOW it works technically |
-| **[docs/SUBMISSION.md](docs/SUBMISSION.md)** | Competition entry: results → trust → architecture → scaling → generalization → unknowns | The formal submission |
-| **[DEVELOPMENT.md](DEVELOPMENT.md)** | Complete build chronology (Day 0-16), every parameter decision with validation evidence, 13 changelog versions, review integration, debugging journey (14→1,242 edges) | To continue development or understand decision history |
-| **[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)** | Original architecture plan with full schemas and algorithms — written before build, annotated with what changed | Historical reference |
-| **[config.yaml](config.yaml)** | All runtime parameters with WHY comments | To tune or switch providers |
+| Document | Contents | Read When |
+|----------|----------|-----------|
+| **This README** | What it found, how to run, verify, architecture | Start here |
+| **[docs/SUBMISSION.md](docs/SUBMISSION.md)** | Formal competition entry — findings, trust, architecture, scaling, limitations | Full picture |
+| **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)** | Epistemic approach: crux formula, settling, framework mismatches, research basis. No code. | Why this approach |
+| **[docs/PIPELINE.md](docs/PIPELINE.md)** | Every module, config reference, design decision rationale, how to extend | How it works |
+| **[DEVELOPMENT.md](DEVELOPMENT.md)** | Full build chronology, parameter tuning decisions, debugging history (14→1,242 edges) | Continue development |
+| **[config.yaml](config.yaml)** | All runtime parameters with WHY comments | Tune or switch providers |
 
-Every folder contains a `README.md` explaining its contents.
+Every folder has a `README.md` explaining its purpose.
 
-**Reading paths:**
-- **Judge (see output)**: This README → `open output/covid_origins/index.html`
-- **Understand approach**: docs/METHODOLOGY.md → docs/PIPELINE.md
-- **Continue development**: DEVELOPMENT.md (full decision trail, Day 0-16) → docs/PIPELINE.md (current architecture) → `src/epistack/README.md` (module map) → source code
-- **Run it yourself**: This README "Run It Yourself" section → config.yaml (model setup)
-- **Add to this project**: docs/PIPELINE.md "How to Extend" section
+---
+
+## Folder Structure
+
+```
+epistack-adversarial/
+├── README.md                  # This file
+├── run_pipeline.py            # Main orchestrator — one command produces full HTML site
+├── config.yaml                # All parameters (models, thresholds, budget)
+├── pyproject.toml             # Dependencies (managed with uv)
+│
+├── src/epistack/              # 15-module Python library
+├── examples/                  # Source registries (sources.yaml per case)
+├── output/                    # Pre-built HTML output (no API key to view)
+├── tests/                     # 103 tests — all pass without API keys
+├── scripts/                   # verify.py, smoke_test.py, add_challenge.py
+├── docs/                      # SUBMISSION.md, METHODOLOGY.md, PIPELINE.md
+├── static/                    # Shared CSS for HTML output
+├── templates/                 # Reserved for future template extraction
+└── archive/                   # v0 prototype (historical reference only)
+```
 
 ---
 

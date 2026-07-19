@@ -4,7 +4,6 @@ Source of truth is events.jsonl. State is derived by replaying events.
 Enables: time-travel, trivial debugging, trivial collaboration (merge JSONL files).
 
 Design sources:
-- DEG architecture (Internal-context/memory_challange/)
 - Graphiti bi-temporal validity (arXiv:2501.13956)
 - FPF confidence-gated supersession (arXiv:2601.21116)
 """

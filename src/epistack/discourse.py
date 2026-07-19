@@ -11,7 +11,7 @@ Pipeline:
 
 Design sources:
 - IMPLEMENTATION_PLAN.md §7
-- PROJECT_CONTEXT.md §7 (discourse map is the hero)
+- docs/METHODOLOGY.md (structural illumination)
 """
 
 from __future__ import annotations

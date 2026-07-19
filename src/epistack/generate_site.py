@@ -9,7 +9,7 @@ Minimal first pass — inline styles, expand later.
 
 Design sources:
 - IMPLEMENTATION_PLAN.md §9
-- PROJECT_CONTEXT.md §7 (static HTML over D3 graph)
+- docs/PIPELINE.md (site generation)
 """
 
 from __future__ import annotations

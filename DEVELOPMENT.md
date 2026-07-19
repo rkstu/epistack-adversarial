@@ -503,7 +503,7 @@ Tracked by `llm.py`, printed at pipeline end.
 | Decision | Rationale | Source |
 |----------|-----------|--------|
 | Config-driven, provider-agnostic | Switch providers in 1 line; enterprise-standard | 12-factor app, Apollo Research pattern |
-| Event-sourced JSONL | Time-travel, debugging, append-only collaboration | DEG (`Internal-context/memory_challange/`) |
+| Event-sourced JSONL | Time-travel, debugging, append-only collaboration | DEG architecture (prior project) |
 | Confidence-gated supersession | Low-conf can't override high-conf claims | DEG `trust.py`, FPF arXiv:2601.21116 |
 | Bi-temporal validity | When claim was true vs when we learned it | DEG `temporal.py`, Graphiti arXiv:2501.13956 |
 | Cascade BFS for crux detection | Downstream impact with decay + redundancy | DEG `temporal.py:cascade_impact()`, Chan & Darwiche 2004 |

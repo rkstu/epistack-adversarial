@@ -285,7 +285,7 @@ Total for 3 case studies: ~$1.00. Wall-clock: ~15 min per case.
 | 2 | Market origin/amplification in top-5 cruxes | #3: HSM proximity, #5: earliest 40 cases |
 | 3 | ≥1 genuine empty chair | 5 found (viral genomics, contact tracing, lab safety experts) |
 | 4 | Performed settling fires on Rootclaim verdict | 5/9 verdicts, 92 contested deps + framework adjudication |
-| 5 | All claims traceable to source quotes | 222/222 with `quote_verified: true` |
+| 5 | All claims traceable to source quotes | 230/230 active claims with `quote_verified: true` |
 
 ## Edge Progression (Debugging History)
 

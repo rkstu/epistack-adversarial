@@ -97,17 +97,17 @@ More sources = denser graph = more precise crux detection = more cascade paths =
 Three cases, three different epistemic failure modes:
 
 ### COVID-19 Origins (Contested) → Cruxes + Settling
-- 222 claims, 916 edges, 3 positions, 10 cruxes, settling detected on 5 verdicts
-- **What the system shows**: The debate has clear positions but the verdict PERFORMED SETTLING — declared a winner without resolving the underlying empirical disagreements
-- **Novel insight**: 92 dependency claims remain contested, and the verdict crosses framework boundaries
+- 230 claims, 1,242 edges, 3 positions, 10 cruxes, settling detected on all 9 verdicts
+- **What the system shows**: The debate has clear positions but every verdict PERFORMED SETTLING — declared a winner without resolving the underlying empirical disagreements
+- **Novel insight**: 46 dependency claims remain contested (confidence 0.3–0.7), and the verdict adjudicates between incompatible frameworks rather than resolving factual questions
 
 ### LHC Black Holes (Settled Science) → Dependency Chain
-- 47 claims, 225 edges, 5 positions, 2 cruxes
-- **What the system shows**: Heavy consensus (215/225 edges are `supports`). The safety argument forms a well-supported dependency chain. No fundamental disagreements detected.
-- **Novel insight**: The system correctly identifies this as settled WITHOUT being told — the graph structure (all-supports, no contradictions) reveals it
+- 53 claims, 232 edges, 5 positions, 2 cruxes
+- **What the system shows**: Heavy consensus (215/232 edges are `supports`). The safety argument forms a well-supported dependency chain. No fundamental disagreements detected.
+- **Novel insight**: The system correctly identifies this as settled WITHOUT being told — the graph structure (nearly all-supports, minimal contradictions) reveals it structurally
 
 ### Eggs & Health (Vague/Open-ended) → Framework Mismatches
-- 55 claims, 193 edges, 5 positions, 4 cruxes, **11 `frames_differently` edges**
+- 60 claims, 219 edges, 5 positions, 4 cruxes, **11 `frames_differently` edges**
 - **What the system shows**: The disagreement isn't factual — it's about WHICH QUESTION to ask. Observational studies ask "what correlates with mortality?" while RCTs ask "what causally drives LDL?" These aren't contradicting each other; they're asking different questions.
 - **Novel insight**: The `frames_differently` edge type prevents misclassifying methodology mismatches as factual disputes. Resolution requires agreeing which question matters for your context, not finding more evidence.
 
@@ -115,7 +115,7 @@ Three cases, three different epistemic failure modes:
 
 New evidence enters the system and cascades:
 ```
-BEFORE: "WIV GoF in BSL-2" — crux score 0.838, confidence 0.23
+BEFORE: "WIV GoF in BSL-2" — crux score 0.61, confidence 0.23
 CHALLENGE ADDED: "NIH P3CO board classified as not gain-of-function"
 AFTER:  Confidence drops (contradiction registered). Crux score STAYS HIGH —
         correctly, because the contested claim now matters MORE to resolve.

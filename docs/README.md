@@ -26,4 +26,4 @@
 
 - `../config.yaml` — Single source of truth for all pipeline configuration
 - `../IMPLEMENTATION_PLAN.md` — Original architecture plan (historical reference)
-- `../PROJECT_CONTEXT.md` — Competition context, strategy, competitive landscape
+- `../DEVELOPMENT.md` — Full build chronology and every parameter decision with rationale

@@ -8,7 +8,7 @@ Source configurations for the three demonstration cases. Each `sources.yaml` def
 
 5 sources: Scott Alexander's ACX analysis, both judge decisions, Weissman's Bayesian analysis, Rootclaim's response.
 
-**Result**: 222 claims, 916 edges, 3 positions, 10 cruxes, settling detected.
+**Result**: 230 claims, 1,242 edges, 3 positions, 10 cruxes, settling detected on all 9 verdicts.
 
 ## `lhc_black_holes/`
 
@@ -16,7 +16,7 @@ Source configurations for the three demonstration cases. Each `sources.yaml` def
 
 5 sources: CERN FAQ, LSAG safety report, Wilczek/Busza paper, Wikipedia overview, Scientific American.
 
-**Result**: 47 claims, 225 edges, 5 positions, 2 cruxes. Heavy consensus (215/225 edges = supports).
+**Result**: 53 claims, 232 edges, 5 positions, 2 cruxes. Heavy consensus (215/232 edges = supports).
 
 ## `eggs_health/`
 
@@ -24,4 +24,4 @@ Source configurations for the three demonstration cases. Each `sources.yaml` def
 
 5 sources: Zhong BMJ (observational), Xu meta-analysis, Zhong JAMA (cohort), Soliman review (RCT evidence), Harvard Nutrition Source.
 
-**Result**: 55 claims, 193 edges, 5 positions, 4 cruxes. **11 `frames_differently` edges** correctly identify methodology mismatches.
+**Result**: 60 claims, 219 edges, 5 positions, 4 cruxes. **11 `frames_differently` edges** correctly identify methodology mismatches.

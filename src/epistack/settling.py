@@ -7,7 +7,7 @@ Two types:
 
 Design sources:
 - IMPLEMENTATION_PLAN.md §6.3
-- PROJECT_CONTEXT.md §7 (performed settling = unique contribution)
+- docs/METHODOLOGY.md (performed settling concept)
 """
 
 from __future__ import annotations
