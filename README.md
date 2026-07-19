@@ -67,7 +67,7 @@ More sources = denser graph = more precise crux detection. Cost per case enables
 # 1 — Clone + verify (no API key needed)
 git clone https://github.com/rkstu/epistack-adversarial
 cd epistack-adversarial
-uv sync
+uv sync --extra dev
 uv run python scripts/verify.py   # 103 tests + output validation → exit 0
 
 # 2 — View pre-built output (no API key needed)

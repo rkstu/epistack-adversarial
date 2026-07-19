@@ -41,7 +41,7 @@ def main() -> int:
     # ── 1. Unit tests ────────────────────────────────────────────────────────
     section("1. Unit Tests  (103 tests, no API keys)")
     result = subprocess.run(
-        ["uv", "run", "pytest", "tests/", "-q", "--tb=short"],
+        ["uv", "run", "--extra", "dev", "pytest", "tests/", "-q", "--tb=short"],
         cwd=root,
         capture_output=True,
         text=True,
