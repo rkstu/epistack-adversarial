@@ -27,7 +27,7 @@ The main finding is that the Rootclaim debate's verdicts look more settled than 
 
 2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200. Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks. That gap, roughly two orders of magnitude in the prior alone, propagates through everything downstream. Both claims are in the system with verified source quotes (inspectable in the HTML output).
 
-3. **The most important unresolved claim is empirical.** "WIV was conducting gain-of-function research in BSL-2 conditions" has the highest crux score (0.61 on a 0-to-1 scale, where 1.0 would mean maximum uncertainty with maximum downstream impact). It scores high because it is genuinely contested (confidence 0.23) and many other claims depend on it. Resolving it would change the most conclusions.
+3. **The most important unresolved claim is empirical.** "WIV was conducting gain-of-function research in BSL-2 conditions" has the highest crux score (0.61 on a 0-to-1 scale, where 1.0 would mean maximum uncertainty with maximum downstream impact). For context, the second-highest crux scores 0.24, so this claim is a clear outlier. It scores high because it is genuinely contested (confidence 0.23) and many other claims depend on it. Resolving it would change the most conclusions.
 
 4. **Several relevant perspectives are absent from all sources** — including virological genomics, epidemiological contact tracing, and laboratory safety whistleblowers. Identified by asking "what viewpoints are conspicuously missing?" rather than assuming.
 
@@ -57,10 +57,10 @@ The full COVID site includes 3 positions, 10 ranked cruxes, settling alerts on a
 ## Three Cases Show It Generalizes
 
 ### COVID-19 Origins — contested dispute
-230 claims, 1,242 edges, 3 positions, 10 cruxes. The system finds real unresolved disagreements and shows where the conclusions went further than the evidence.
+5 sources processed (of 8 listed; 3 YouTube transcripts are queued but not yet ingested). 230 claims, 1,242 edges, 3 positions, 10 cruxes. The system finds real unresolved disagreements and shows where the conclusions went further than the evidence.
 
 ### LHC Black Holes — settled science
-53 claims, 232 edges, 5 positions. 215 of 232 edges are `supports`. The safety argument forms an unbroken dependency chain. No contested cruxes remain. The system identifies this as settled from graph structure, not from a topic label.
+4 sources processed (of 5 listed; 1 paywalled URL was unreachable). 53 claims, 232 edges, 5 positions. 215 of 232 edges are `supports`. The safety argument forms an unbroken dependency chain. No contested cruxes remain. The system identifies this as settled from graph structure, not from a topic label.
 
 ### Eggs & Health — framework mismatch
 60 claims, 219 edges, 11 `frames_differently` edges. Observational studies ask "what correlates with mortality?" while RCTs ask "what causally drives LDL?" They aren't contradicting each other — they're asking different questions. No single load-bearing crux exists. The "dispute" dissolves once you separate the frames.
@@ -159,6 +159,22 @@ The main human judgment is source selection and metadata annotation (each source
 3. **Framework mismatches as a separate structural category.** What looks like disagreement can be two traditions asking different questions. The correct response is "which question are you asking?" not "who's right?"
 
 4. **Correlated evidence detection from provenance.** "Independent evidence" requires independent provenance. This is computable from the graph and directly addresses the "correlated evidence treated as independent" failure mode.
+
+---
+
+## What Would Come Next
+
+If this work continues, the highest-value next steps are:
+
+1. **Process the 3 YouTube debate sessions** (already listed in sources.yaml, transcripts available via API). This would roughly double the COVID source count, adding the actual adversarial arguments between debaters rather than just judges' summaries and post-hoc analyses.
+
+2. **Build a parametric divergence comparison page.** The Weissman and Rootclaim priors are already extracted as claims. A dedicated view showing their probability assignments side-by-side, ranked by magnitude of disagreement, would make the 23-OOM divergence structurally visible in a way no existing analysis does.
+
+3. **Test at 15+ sources.** The current 5-source run is dense (1,242 edges) but the debate has 15+ relevant documents. More sources would test whether crux scores stabilize or shift as evidence accumulates.
+
+4. **Reader study.** The biggest unknown is whether the discourse map actually helps someone reason better. A controlled comparison (domain expert with vs without the map) would answer this.
+
+Each of these depends only on time, not on architectural changes. The pipeline, store format, and site generation already support them.
 
 ---
 
