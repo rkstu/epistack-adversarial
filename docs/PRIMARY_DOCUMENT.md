@@ -21,19 +21,19 @@ The system runs end-to-end on all 3 case studies. One command produces the full 
 
 | Case | Claims | Positions | Cruxes | Framework mismatches | HTML pages |
 |------|--------|-----------|--------|---------------------|------------|
-| COVID origins | 222 | 3 | 10 | 6 | 30 |
-| LHC black holes | 47 | 5 | 2 | 4 | 22 |
-| Eggs & health | 55 | 5 | 4 | 11 | 23 |
+| COVID origins | 230 | 3 | 10 | 78 | 29 |
+| LHC black holes | 53 | 5 | 2 | 4 | 21 |
+| Eggs & health | 60 | 5 | 4 | 11 | 22 |
 
 Total cost for all 3: about $1. Each run takes about 15 minutes.
 
-Every claim in the system traces to a direct quote from its source document. 222 out of 222 verified. If the AI can't point to where in the source a claim comes from, the claim is rejected.
+Every claim in the system traces to a direct quote from its source document. All 230 active COVID claims have `quote_verified: true`. If the AI can't point to where in the source a claim comes from, the claim is rejected.
 
 Some specific things the system found on COVID:
 
 The top crux (the claim whose resolution would most change downstream conclusions) is "WIV was conducting gain-of-function research in BSL-2 conditions." The score combines how uncertain the claim is with how many other conclusions depend on it. A foundational fact nobody disputes scores low (nothing to resolve), and a contested claim nothing depends on also scores low (resolving it changes nothing). Only claims that are both uncertain AND consequential score high.
 
-The system detected "performed settling" on 5 of 9 verdict claims: the debate declared winners but 92 supporting claims remain contested, and the verdict adjudicates between incompatible interpretive frameworks rather than resolving factual questions. The Rootclaim debate is the clearest example: judges ruled for zoonosis, $100K changed hands, but the empirical cruxes remain open.
+The system detected "performed settling" on all 9 verdict claims: the debate declared winners but 92 supporting claims remain contested, and the verdict adjudicates between incompatible interpretive frameworks rather than resolving factual questions. The Rootclaim debate is the clearest example: judges ruled for zoonosis, $100K changed hands, but the empirical cruxes remain open.
 
 On eggs: the system found 11 instances where research traditions aren't actually contradicting each other but are asking different questions about the same phenomenon (observational mortality studies vs mechanistic RCTs). The output shows this as a framework mismatch rather than forcing it into a "who's right" frame. The finding is that no single load-bearing crux exists for eggs because the apparent disagreement dissolves once you separate the methodological frames.
 
@@ -57,23 +57,13 @@ The system is provider-agnostic (one config file change switches between models)
 
 ---
 
-## What I'm Planning Next
-
-The big remaining piece: decomposing the 23-order-of-magnitude Bayesian divergence. Six analysts looked at the same evidence and reached wildly different conclusions. I want to ingest their explicit probability assignments (Weissman's analysis, Rootclaim's response) and identify which specific parametric assumptions account for the largest portions of the spread. The goal is an output showing something like "this single parameter choice (how likely the market is the epicenter given a lab leak) accounts for 8 of the 23 orders of magnitude."
-
-If that works, it would show something nobody has produced before, including Alexander's 20K-word writeup.
-
-I'm also adding more COVID sources (YouTube debate transcripts, additional Bayesian analyses) for a denser and more precise graph.
-
----
-
 ## What I Genuinely Don't Know
 
-Whether the 23-OOM decomposition will work. Extracting quantitative probability assignments from Bayesian analyses is harder than extracting qualitative claims. Haven't tested it yet.
-
-Whether the output helps someone reason better than a careful 30-minute Claude Deep Research run on the same topic. The system must be qualitatively better than that baseline, not just more structured.
+Whether the output helps someone reason better than a careful 30-minute Claude Deep Research run on the same topic. The system produces structural illumination, not a summary — these are different trade-offs.
 
 Whether confidence scores are calibrated. Currently they're relative rankings, not probabilities.
+
+Whether M2/M3 defenses transfer from factual verification prompts to evaluative/argumentative prompts — validated in controlled experiments, not yet for this specific context.
 
 ---
 
@@ -99,4 +89,4 @@ Chan & Darwiche 2004. "Sensitivity Analysis in Bayesian Networks." UAI.
 
 Howard 1966. "Information Value Theory." IEEE.
 
-GitHub: [repo link]. Full source, 103 tests, reproducible.
+GitHub: https://github.com/rkstu/epistack-adversarial — Full source, 103 tests, pre-built output included.

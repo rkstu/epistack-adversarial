@@ -1,4 +1,6 @@
-# Epistack Competition - Early Feedback Form Answers
+# Epistack — Early Feedback Submission
+
+> This was submitted to the competition organizers before the final submission. Kept as historical reference.
 
 ---
 
@@ -20,17 +22,15 @@ All / integrated
 
 ---
 
-## 4. Primary Document or Drive URL
+## 4. Primary Document
 
-[Attach Google Doc converted from docs/PRIMARY_DOCUMENT.md]
+See [docs/PRIMARY_DOCUMENT.md](PRIMARY_DOCUMENT.md)
 
 ---
 
 ## 5. Repo URL
 
 https://github.com/rkstu/epistack-adversarial
-
-Work in progress. Core pipeline, compliance detection, multi-trial scoring, and tests work. Full case study outputs coming before the final deadline.
 
 ---
 

@@ -1,11 +1,9 @@
 # Epistack — Implementation Plan v2.0
 
-> **Status note (July 9, 2026):** This was the original architecture plan. The system has been built and all 3 case studies produce output. For the CURRENT technical reference, see [docs/PIPELINE.md](docs/PIPELINE.md). Key differences from this plan: models are GPT-4.1-mini/nano via OpenRouter (not Claude), cost is ~$0.30/case (not $14-18), and graph-based position detection supplements HDBSCAN.
+> **Status note:** This was the original architecture plan written before implementation. The system is now fully built. For the current technical reference, see [docs/PIPELINE.md](docs/PIPELINE.md). Key differences from this plan: models are GPT-4.1-mini/nano via OpenRouter (not Claude), cost is ~$0.30/case (not $14-18), and graph-based position detection supplements HDBSCAN.
 
-**Competition**: FLF Epistemic Case Study Competition ($200K pool)
-**Deadline**: July 19, 2026
-**Builder**: Rahul Kumar (solo)
-**Build window**: ~20 days (completed in 14)
+**Author**: Rahul Kumar
+**Completed**: July 2026
 
 ---
 

@@ -34,6 +34,6 @@ Requires `OPENROUTER_API_KEY` in `.env`. Cost: ~$0.25-$0.30 per case.
 
 | Case | Claims | Edges | Positions | Cruxes | Pages |
 |------|--------|-------|-----------|--------|-------|
-| COVID-19 Origins | 222 | 916 | 3 | 10 | 29 |
-| LHC Black Holes | 47 | 225 | 5 | 2 | 21 |
-| Eggs & Health | 55 | 193 | 5 | 4 | 22 |
+| COVID-19 Origins | 230 | 1,242 | 3 | 10 | 29 |
+| LHC Black Holes | 53 | 232 | 5 | 2 | 21 |
+| Eggs & Health | 60 | 219 | 5 | 4 | 22 |

@@ -28,6 +28,9 @@ data/
 # Private reference materials from competition organizers
 docs/conor_infinitum/
 
+# Internal strategy/competition files (not for public view)
+PROJECT_CONTEXT.md
+
 # Everything else IS public and committed:
 # - output/ (pre-built HTML for judges)
 # - docs/ (submission, methodology, pipeline docs)

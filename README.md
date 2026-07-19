@@ -2,21 +2,21 @@
 
 **Compliance-aware epistemic verification for AI-assisted knowledge bases.**
 
-FLF Epistemic Case Study Competition ($200K pool, deadline July 19, 2026). Produces navigable discourse maps from existing debate materials — showing positions, cruxes, empty chairs, and performed settling.
+Takes existing debate materials (papers, transcripts, blog posts) and produces navigable static HTML discourse maps — showing positions, cruxes, empty chairs, and performed settling.
+
+Submitted to the FLF Epistemic Case Study Competition, July 2026.
 
 ### Project Status
 
 | Aspect | State |
 |--------|-------|
 | **Pipeline** | ✅ Complete — 15 modules, 4,000+ lines, 103 tests |
-| **COVID case** | ✅ Complete — 222 claims, 916 edges, 3 positions, 10 cruxes, settling fires |
-| **LHC case** | ✅ Complete — 47 claims, 225 edges, 5 positions (settled science) |
-| **Eggs case** | ✅ Complete — 55 claims, 193 edges, 11 `frames_differently` edges |
-| **HTML output** | ✅ 75 pages across 3 cases (pre-built, viewable immediately) |
-| **Submission doc** | ✅ Written (`docs/SUBMISSION.md`) |
-| **Remaining** | Quality pass, final screenshots, ship by July 14 |
+| **COVID case** | ✅ Complete — 230 claims, 1,242 edges, 3 positions, 10 cruxes, settling detected |
+| **LHC case** | ✅ Complete — 53 claims, 232 edges, 5 positions (settled science) |
+| **Eggs case** | ✅ Complete — 60 claims, 219 edges, 11 `frames_differently` edges |
+| **HTML output** | ✅ 72 pages across 3 cases (pre-built, viewable immediately) |
 
-**Total cost for all 3 cases: ~$1.** Total time: ~37 minutes of pipeline execution.
+**Total cost for all 3 cases: ~$1.** Total time: ~45 minutes of pipeline execution.
 
 ---
 
@@ -44,7 +44,7 @@ Takes existing debate materials (papers, transcripts, judge decisions, blog post
 **COVID-19 Origins result** (5 sources, $0.30, 15 minutes):
 - 3 positions: Zoonotic spillover (76 claims) vs Lab leak (62 claims) vs Methodology critique (6 claims)
 - 10 empirical cruxes (top: "WIV gain-of-function in BSL-2 conditions")
-- 5 verdicts detected as "performed settling" (declared winners without resolving underlying disputes)
+- 9 verdicts detected as "performed settling" (declared winners without resolving underlying disputes)
 - 5 empty chairs (perspectives absent from the evidence)
 
 ---
@@ -115,10 +115,10 @@ config.yaml → Sources → Fetch → Extraction (grounded quotes) → 4-Layer V
 
 | Case | Sources | Claims | Edges | Cost | Time |
 |------|---------|--------|-------|------|------|
-| COVID-19 | 5 | 222 | 916 | $0.30 | 15 min |
-| LHC | 4 | 47 | 225 | $0.20 | 10 min |
-| Eggs | 5 | 55 | 193 | $0.25 | 12 min |
-| **Total** | **14** | **324** | **1,334** | **~$1** | **~37 min** |
+| COVID-19 | 5 | 230 | 1,242 | $0.30 | 15 min |
+| LHC | 4 | 53 | 232 | $0.20 | 10 min |
+| Eggs | 5 | 60 | 219 | $0.25 | 12 min |
+| **Total** | **14** | **343** | **1,693** | **~$1** | **~37 min** |
 
 ---
 
@@ -130,9 +130,8 @@ config.yaml → Sources → Fetch → Extraction (grounded quotes) → 4-Layer V
 | **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)** | Epistemic approach (crux detection, settling, framework mismatches), research basis, design decisions, limitations. No code. | To understand WHY this approach |
 | **[docs/PIPELINE.md](docs/PIPELINE.md)** | Every module explained, event schema, config reference, key design decisions table with rationale, acceptance criteria, edge progression debugging history, how to extend | To understand HOW it works technically |
 | **[docs/SUBMISSION.md](docs/SUBMISSION.md)** | Competition entry: results → trust → architecture → scaling → generalization → unknowns | The formal submission |
-| **[DEVELOPMENT.md](DEVELOPMENT.md)** | Complete build chronology (Day 0-16), every parameter decision with validation evidence, 13 changelog versions, review integration, debugging journey (14→916 edges) | To continue development or understand decision history |
-| **[PROJECT_CONTEXT.md](PROJECT_CONTEXT.md)** | Competition details, competitive landscape, what $50K requires, Scott Alexander objections, DEG connection | Competition strategy context |
-| **[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)** | Original architecture plan with full schemas and algorithms | Historical reference (note at top explains current vs plan) |
+| **[DEVELOPMENT.md](DEVELOPMENT.md)** | Complete build chronology (Day 0-16), every parameter decision with validation evidence, 13 changelog versions, review integration, debugging journey (14→1,242 edges) | To continue development or understand decision history |
+| **[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)** | Original architecture plan with full schemas and algorithms — written before build, annotated with what changed | Historical reference |
 | **[config.yaml](config.yaml)** | All runtime parameters with WHY comments | To tune or switch providers |
 
 Every folder contains a `README.md` explaining its contents.

@@ -1,23 +1,21 @@
-<!-- FOR AI AGENTS/DEVELOPERS: This is the complete decision trail.
+<!-- FOR DEVELOPERS/CONTRIBUTORS: This is the complete decision trail.
      Read this to understand WHY the system is built this way, not just WHAT it does.
-     Contains: parameter tuning rationale, debugging history (14→916 edges), 
-     model selection benchmarks, 7 integrated review rounds, acceptance criteria validation,
+     Contains: parameter tuning rationale, debugging history (14→1242 edges),
+     model selection benchmarks, acceptance criteria validation,
      and the full build chronology (Day 0 through Day 16).
      For the public technical reference, see docs/PIPELINE.md.
      For non-technical understanding, see docs/METHODOLOGY.md. -->
 
 # Epistack — Development Log
 
-**Competition**: FLF Epistemic Case Study Competition ($200K pool)
-**Deadline**: July 19, 2026
 **Builder**: Rahul Kumar (solo)
 **Started**: June 27, 2026
-**Days remaining**: 10 (as of July 9)
-**Current status**: Day 14 — **ALL 3 CASE STUDIES PRODUCE OUTPUT.** COVID (222 claims, 30 files), LHC (47 claims, 22 files), Eggs (55 claims, 23 files). 75 HTML pages total across 3 cases. Professional CSS + Mermaid. 103 tests. ~$1 total cost. SUBMISSION.md skeleton written.
+**Completed**: July 19, 2026
+**Final status**: ALL 3 CASE STUDIES PRODUCE OUTPUT. COVID (230 claims, 29 files), LHC (53 claims, 21 files), Eggs (60 claims, 22 files). 72 HTML pages total. 103 tests. ~$1 total API cost.
 
-> This file tracks all implementation progress. Updated after every significant change.
+> This file tracks all implementation decisions with rationale. Updated after every significant change.
 > For architecture/algorithms, see `IMPLEMENTATION_PLAN.md`.
-> For project context/strategy, see `PROJECT_CONTEXT.md`.
+> For the current technical reference, see `docs/PIPELINE.md`.
 
 ---
 
@@ -439,11 +437,7 @@ Key observations:
 - [ ] Add "How to Navigate" brief guide on each site's index page
 - [ ] Reproducibility check: fresh `uv sync && uv run python run_pipeline.py covid_origins --phase full`
 - [ ] GitHub repo push (all files, .env excluded, output/ included)
-- [ ] **Submit by July 14** (5 days before deadline)
-
-### Buffer (July 14-18): Available for fixes
-
-5 days buffer before July 19 deadline.
+- [x] Submitted July 19, 2026
 
 ---
 
