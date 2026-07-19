@@ -9,7 +9,7 @@
 
 Epistack is a tool for mapping disagreements. Instead of asking an AI "who is right?", it asks a more useful question: where exactly do the arguments diverge, which unresolved claims matter most, and what evidence would change the picture?
 
-I tested it on three cases. The system produced three different diagnoses:
+I tested it on three cases. The system gave three different results:
 
 - **COVID origins** is a real dispute. Some unresolved claims affect many downstream conclusions, and the final verdicts go further than the evidence supports.
 - **LHC black holes** is settled. The system identifies this by looking at how claims support, contradict, or depend on each other, not from a topic label.
@@ -25,7 +25,7 @@ The main finding is that the Rootclaim debate's verdicts look more settled than 
 
 1. **All 9 verdict claims pick winners, but their dependency claims remain contested** (confidence between 0.3 and 0.7). The most prominent verdict has 46 contested dependencies; the worst case has 92. The debate declared a resolution; the empirical disagreements underneath are still open. I call this "performed settling": the debate looks resolved on the surface, while the underlying factual questions are still open. It is detectable by looking at how claims relate to each other: a verdict exists, its dependencies are contested, and it crosses between different ways of framing the question.
 
-2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200. Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks. That gap, roughly two orders of magnitude in the prior alone, propagates through everything downstream. Both claims are in the system with verified source quotes (inspectable in the HTML output).
+2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200. Rootclaim assigns an 80% lab-leak prior conditional on a pandemic first appearing in Wuhan. That gap, roughly two orders of magnitude in the prior alone, propagates through everything downstream. Both claims are in the system with verified source quotes (inspectable in the HTML output).
 
 3. **The most important unresolved claim is empirical.** "WIV was conducting gain-of-function research in BSL-2 conditions" has the highest crux score (0.61 on a 0-to-1 scale, where 1.0 would mean maximum uncertainty with maximum downstream impact). For context, the second-highest crux scores 0.24, so this claim is a clear outlier. It scores high because it is genuinely contested (confidence 0.23) and many other claims depend on it. Resolving it would change the most conclusions.
 
@@ -43,7 +43,7 @@ A good page to start with is the top crux:
 
 > **Claim**: "WIV was conducting gain-of-function research in BSL-2 conditions"
 > **Why it matters**: many downstream lab-leak claims depend on it
-> **Current confidence**: 0.23, meaning the sources contest it heavily
+> **Current confidence**: 0.23, meaning the sources strongly disagree about it
 > **What happens if it is resolved**:
 > - If true, 12 downstream lab-leak claims strengthen
 > - If false, the lab-leak position loses one of its strongest empirical anchors
@@ -114,7 +114,7 @@ sources.yaml → Fetch (web/PDF/YouTube/local)
 | How to find cruxes | Uncertainty × downstream impact (structural formula) | Reproducible. A claim that's uncertain AND consequential is more important than one that's just uncertain. Based on sensitivity analysis theory (Chan & Darwiche 2004). |
 | How to handle "different questions" | Separate edge type (`frames_differently`) | The eggs case shows why this matters: calling a framework mismatch a "contradiction" misrepresents the debate. |
 | How to count evidence | Independent lines compound; correlated evidence clusters first | Five citations of one paper shouldn't count five times. The system clusters by provenance overlap before combining. |
-| How to prevent fabrication | Check prompt for compliance pressure before sending | My research (arXiv:2605.02398) shows models fabricate above a specific threshold. The system detects and defends before it happens. |
+| How to reduce fabrication risk | Check prompt for compliance pressure before sending | My research (arXiv:2605.02398) shows models fabricate above a specific threshold. The system detects and defends before it happens. |
 
 Full design rationale with all 7 decisions: [docs/PIPELINE.md](PIPELINE.md)
 
@@ -130,7 +130,9 @@ The main failure mode for any AI-assisted epistemic tool is hallucinated or over
 
 3. **Entailment is verified by a second model.** "Does the quote actually support the claim?" catches cases where the AI overstates what the source says (e.g., upgrading "may contribute" to "causes").
 
-4. **Cross-provider checks catch correlated blind spots.** A different model family verifies the highest-stakes claims. 121 verification flags fired across the COVID run (out of 238 initially extracted claims). Flagged claims were not deleted; their confidence was reduced to 0.1, keeping them visible but marked as unreliable. The 230 active claims that remain all passed the quote-verification check; the flags came from entailment and cross-provider layers catching overstatement.
+4. **Cross-provider checks catch correlated blind spots.** A different model family verifies the highest-stakes claims.
+
+   121 verification flags fired across the COVID run, out of 238 initially extracted claims. Flagged claims were not deleted. Their confidence was reduced to 0.1, keeping them visible but marked as unreliable. The 230 active claims that remain all passed quote verification. The flags came from entailment and cross-provider layers catching overstatement.
 
 ---
 
@@ -154,7 +156,7 @@ The main human judgment is source selection and metadata annotation (each source
 
 1. **Performed settling as a detectable property.** Debates can declare winners without resolving underlying evidence. This is computable from how claims relate to each other: a verdict exists, its dependency claims remain contested, and it crosses between different ways of framing the question. I think this is the most original part of the submission.
 
-2. **Connecting compliance research to the specific debate.** The $100K bet creates a similar structural pressure to the conditions that cause AI fabrication in controlled experiments. This connects AI safety research to the debate being analyzed. It's not just about AI; it's about the debate format itself.
+2. **Connecting compliance research to the specific debate.** The $100K bet creates a similar pressure to the conditions that cause AI fabrication in controlled experiments. This connects AI safety research to the debate being analyzed. It's not just about AI; it's about the debate format itself.
 
 3. **Framework mismatches as a separate structural category.** What looks like disagreement can be two traditions asking different questions. The correct response is "which question are you asking?" not "who's right?"
 
@@ -180,11 +182,11 @@ Each of these depends only on time, not on architectural changes. The pipeline, 
 
 ## Honest Unknowns
 
-1. **Whether confidence scores are calibrated** — I report relative rankings. When I say 0.23, that means "contested relative to this graph," not "23% chance of being true."
-2. **Whether this beats manual analysis** — the system processes 5 sources in 15 minutes of compute. A domain expert working manually may catch things that automated extraction misses. The trade-off is faster and more organized output vs less depth on any single source.
-3. **Whether the discourse map changes minds** — no reader study data.
-4. **Whether defenses transfer to evaluative prompts** — validated on "is this claim in the source?" questions, not "evaluate this argument."
-5. **Whether findings survive domain expert scrutiny** — verified with 4 automated layers, not with virologists.
+1. **Whether confidence scores are calibrated**: I report relative rankings. When I say 0.23, that means "contested relative to this graph," not "23% chance of being true."
+2. **Whether this beats manual analysis**: the system processes 5 sources in 15 minutes of compute. A domain expert working manually may catch things that automated extraction misses. The trade-off is faster and more organized output vs less depth on any single source.
+3. **Whether the discourse map changes minds**: no reader study data.
+4. **Whether defenses transfer to evaluative prompts**: validated on "is this claim in the source?" questions, not "evaluate this argument."
+5. **Whether findings survive domain expert scrutiny**: verified with 4 automated layers, not with virologists.
 
 ---
 
