@@ -7,27 +7,33 @@
 
 ---
 
-We processed 5 sources from the Rootclaim COVID origins debate ($100K bet, 15 hours of structured argument, 6 Bayesian analyses spanning 23 orders of magnitude) and produced a discourse map showing **3 positions**, **10 empirical cruxes**, and **5 perspectives absent from the evidence**. The system detected that 5 of 9 verdicts performed settling — declared winners without resolving the underlying disagreements. The top crux ("WIV gain-of-function research in BSL-2 conditions", score 1.13) identifies the single empirical question whose resolution would most change the debate. Total cost: **$0.30**. Total time: **15 minutes**.
+We processed 5 sources from the Rootclaim COVID origins debate ($100K bet, 15 hours of structured argument, 6 Bayesian analyses spanning 23 orders of magnitude) and found four things a careful reader wouldn't easily see on their own:
 
-The same pipeline handles settled science (LHC black holes: maps the dependency chain showing WHY it's settled) and vague questions (eggs & health: detects 11 framework mismatches where studies ask different questions rather than disagreeing on facts). Three cases, 75 HTML pages, $1 total.
+1. **The debate performed settling.** All 9 verdict claims declared winners while 46 dependency claims remain contested (confidence 0.3–0.7). The $100K bet format creates G3 compliance-forcing conditions (arXiv:2605.02398) — both debaters structurally cannot say "I don't know," meaning their expressed confidence is inflated regardless of argument quality.
+2. **The 23-OOM divergence between Bayesian analysts traces to a single prior.** Weissman assigns P(lab leak) ≈ 1/200. Rootclaim assigns ~50% for Wuhan-origin pandemics. That 100× gap in a single starting assumption, before any evidence is weighed, accounts for most of the spread.
+3. **The top crux is an empirical question with a traceable answer.** WIV conducting gain-of-function research in BSL-2 conditions (crux score 0.61) is the claim whose resolution would most cascade through the debate graph. It is uncertain, contested across sources, and has high downstream influence — exactly what the competition asks for.
+4. **Five perspectives are structurally absent.** Virological/genomic analyses, epidemiological contact tracing, and laboratory safety whistleblowers are not represented in any source — identified adversarially, not by assumption.
+
+The same pipeline diagnoses LHC black holes (settled: no contested cruxes, clear dependency chain) and eggs & health (not a dispute at all: 11 framework-mismatch edges show the sources are asking different questions). Three cases, three different epistemic structures, one pipeline. Total cost: **$1**. Total time: **45 minutes**.
 
 ---
 
 ## 1. What You Can See
 
-[SCREENSHOT: COVID-19 Origins discourse map — index.html]
+Open `output/covid_origins/index.html` in a browser — the pre-built site is included in the repo, no API key required.
 
-The output is a **navigable static HTML site** showing:
+The COVID-19 Origins site shows:
 
-- **3 positions** identified: Zoonotic spillover (76 claims), Lab leak hypothesis (62 claims), Bayesian methodology critique (6 claims)
-- **10 empirical cruxes** — the specific claims whose resolution would most change the picture:
-  1. WIV conducting gain-of-function in BSL-2 conditions (score: 1.13)
-  2. Epidemiological proximity of the Huanan Seafood Market (score: 0.35)
-  3. DEFUSE program collecting coronaviruses + GoF (score: 0.33)
-  4. Earliest 40 cases — half with market connection (score: 0.33)
-- **Performed settling detected**: The Rootclaim debate declared a winner, but 92 dependency claims remain contested (confidence 0.3-0.7) and the verdict adjudicates between incompatible frameworks
+- **3 positions**: Zoonotic spillover (76 claims), Lab leak hypothesis (62 claims), Bayesian methodology critique (6 claims)
+- **10 empirical cruxes** — ranked by entropy × cascade influence:
+  1. WIV conducting gain-of-function in BSL-2 conditions (score: **0.61**)
+  2. Strong Bayesian evidence on both sides creates underdetermination (score: 0.24)
+  3. Epidemiological proximity of the Huanan Seafood Market (score: 0.23)
+  4. Coincidence of epidemic starting near Wuhan's coronavirus lab (score: 0.21)
+  5. DEFUSE program collecting coronaviruses from bat caves (score: 0.14)
+- **Performed settling on all 9 verdicts**: Every verdict claim has contested dependencies. The debate declared a winner; the underlying disagreements remain open.
 - **5 empty chairs**: Perspectives absent from the discourse (viral genomics, contact tracing, lab safety whistleblowers)
-- **Collaboration**: New evidence (challenges) enters the system and cascades — the discourse map evolves without manual intervention
+- **Collaboration**: New evidence cascades — adding a challenge to any claim triggers re-scoring of all downstream conclusions
 
 This is not a summary. It's a structural map of WHERE and WHY people disagree.
 
@@ -45,7 +51,7 @@ Every AI-assisted epistemic tool sends prompts to LLMs. If those prompts cross t
 
 ### Grounded Extraction
 
-Every claim in the system traces to a **direct quote** from a source document. 222/222 claims have `quote_verified: true`. Claims with hallucinated quotes are rejected before entering the knowledge base.
+Every claim in the system traces to a **direct quote** from a source document. All 230 active claims in the COVID case have `quote_verified: true`. Claims with hallucinated quotes are rejected before entering the knowledge base — 121 verification events fired across the run, each dropping fabricated or overstated claims to 0.1 confidence rather than silently passing them.
 
 ### Statistical Rigor
 
@@ -79,7 +85,7 @@ Sources → Fetch → Extraction (grounded quotes) → 4-Layer Verification
 |---------|--------|-------|--------|------|------|
 | 1 (partial) | 14 | 0 | 0 | $0.008 | 2 min |
 | 2 | 88 | 14 | 0 | $0.048 | 12 min |
-| 5 | 222 | 916 | 10 | $0.30 | 15 min |
+| 5 | 230 | 1,242 | 10 | $0.30 | 15 min |
 | 8 (projected) | ~350 | ~1500 | ~15 | ~$0.50 | ~25 min |
 
 More sources = denser graph = more precise crux detection = more cascade paths = better structural illumination. This is not a fixed-quality summary — it improves **monotonically** with compute. The cost per case study ($0.30-0.50) enables unlimited iteration.
