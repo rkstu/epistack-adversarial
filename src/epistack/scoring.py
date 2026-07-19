@@ -1,19 +1,17 @@
-"""Pass-cubed statistical scoring adapted from Preseal for epistemic claim verification.
+"""Statistical scoring primitives for epistemic claim verification.
 
 Ported from: DAST/preseal/src/preseal/scorer.py
-Adaptation: security dimensions → epistemic dimensions
+Reference: arXiv:2503.01747 ("Don't use CLT in LLM evals")
 """
 
 import math
-from dataclasses import dataclass
-from typing import Optional
 
 
-def wilson_ci(successes: int, trials: int, z: float = 1.96) -> tuple:
+def wilson_ci(successes: int, trials: int, z: float = 1.96) -> tuple[float, float]:
     """Wilson score confidence interval for binomial proportion.
 
     Returns (lower, upper) bounds. Handles edge cases gracefully.
-    Directly ported from preseal/src/preseal/scorer.py.
+    Superior to normal approximation at small N.
     """
     if trials == 0:
         return (0.0, 1.0)
@@ -28,63 +26,11 @@ def wilson_ci(successes: int, trials: int, z: float = 1.96) -> tuple:
     return (lower, upper)
 
 
-@dataclass
-class EpistemicScore:
-    """Multi-dimensional epistemic quality score.
-
-    Multiplicative: any zero dimension kills the total score.
-    Mirrors Preseal's DimensionScores but for epistemic verification.
-    """
-    evidence_strength: float  # Did the claim survive verification trials?
-    logical_consistency: float  # Is it consistent with other claims in the DAG?
-    adversarial_robustness: float  # Did it survive red-team attacks?
-    source_quality: float  # How credible are the backing sources?
-    cross_model_agreement: float  # Do different model families agree?
-
-    @property
-    def composite(self) -> float:
-        """Multiplicative composite — any zero propagates."""
-        return (
-            self.evidence_strength
-            * self.logical_consistency
-            * self.adversarial_robustness
-            * self.source_quality
-            * self.cross_model_agreement
-        )
-
-    @property
-    def weakest_dimension(self) -> tuple:
-        """Returns (name, value) of the weakest dimension."""
-        dims = {
-            "evidence_strength": self.evidence_strength,
-            "logical_consistency": self.logical_consistency,
-            "adversarial_robustness": self.adversarial_robustness,
-            "source_quality": self.source_quality,
-            "cross_model_agreement": self.cross_model_agreement,
-        }
-        weakest = min(dims, key=dims.get)
-        return (weakest, dims[weakest])
-
-
-def score_claim_trials(successes: int, trials: int) -> tuple:
-    """Score a claim based on verification trial results.
-
-    Returns (point_estimate, wilson_ci_lower, wilson_ci_upper).
-    """
-    if trials == 0:
-        return (0.0, 0.0, 1.0)
-
-    point = successes / trials
-    lower, upper = wilson_ci(successes, trials)
-    return (point, lower, upper)
-
-
-def score_cross_model(results: dict) -> float:
+def score_cross_model(results: dict[str, bool]) -> float:
     """Score cross-model agreement.
 
-    results: {model_family: bool} — True if model verified the claim.
-    Returns agreement ratio. Handles the case where disagreement
-    across families is more informative than within-family agreement.
+    results: {model_name: verified} — True if model verified the claim.
+    Same-family agreement is penalized 30% (correlated training → correlated blind spots).
     """
     if not results:
         return 0.0
@@ -101,8 +47,7 @@ def score_cross_model(results: dict) -> float:
         total += 1
 
     if len(families) < 2:
-        # Same-family agreement is worth less
-        return (agreements / total) * 0.7  # 30% penalty for mono-family
+        return (agreements / total) * 0.7
 
     return agreements / total
 
@@ -110,10 +55,10 @@ def score_cross_model(results: dict) -> float:
 def score_source_quality(source_signals: dict) -> float:
     """Score source credibility from available signals.
 
-    Signals may include: citation_count, retraction_status, peer_reviewed,
+    Signals: citation_count, retraction_status, peer_reviewed,
     author_h_index, publication_venue_impact, date_published.
     """
-    score = 0.5  # default unknown
+    score = 0.5  # default: unknown quality
 
     if source_signals.get("retracted"):
         return 0.0
@@ -131,20 +76,3 @@ def score_source_quality(source_signals: dict) -> float:
         score += 0.1
 
     return min(1.0, score)
-
-
-def classify_confidence(ci_lower: float, cross_model: float) -> str:
-    """Classify overall confidence level.
-
-    Maps to human-readable categories matching the competition's
-    expectation of transparent confidence reporting.
-    """
-    if cross_model < 0.6:
-        return "CONTESTED"
-    if ci_lower > 0.8:
-        return "HIGH"
-    if ci_lower > 0.5:
-        return "MEDIUM"
-    if ci_lower > 0.2:
-        return "LOW"
-    return "INSUFFICIENT_EVIDENCE"

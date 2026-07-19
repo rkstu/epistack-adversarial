@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true});</script>
+    <title>Eggs Health — Epistack Discourse Map</title>
+</head>
+<body>
+    <h1>Eggs Health</h1>
+    <p class="subtitle">Epistack Discourse Map — structural illumination of disagreement</p>
+
+    <div class="stats">
+        <div class="stat-card"><div class="number">35</div><div class="label">Claims</div></div>
+        <div class="stat-card"><div class="number">193</div><div class="label">Edges</div></div>
+        <div class="stat-card"><div class="number">5</div><div class="label">Positions</div></div>
+        <div class="stat-card"><div class="number">4</div><div class="label">Cruxes</div></div>
+        <div class="stat-card"><div class="number">4</div><div class="label">Sources</div></div>
+    </div>
+
+    <h2>Discourse Structure</h2>
+    <div class="mermaid-container">
+    <pre class="mermaid">
+graph LR
+    pos_00["This position uniquely argues that dieta (27)"]
+    pos_01["This position uniquely argues that, desp (4)"]
+    pos_02["Eggs are a preferable breakfast option c (1)"]
+    pos_03["Dietary cholesterol, such as that found  (4)"]
+    pos_04["This position uniquely argues that eggs  (2)"]
+    pos_00 ---|0⚔ 1◇| pos_01
+    pos_00 ---|0⚔ 0◇| pos_02
+    pos_00 ---|0⚔ 2◇| pos_03
+    pos_00 ---|0⚔ 0◇| pos_04
+    pos_01 ---|0⚔ 0◇| pos_02
+    pos_01 ---|0⚔ 1◇| pos_03
+    pos_01 ---|0⚔ 0◇| pos_04
+    pos_02 ---|0⚔ 0◇| pos_03
+    pos_02 ---|0⚔ 0◇| pos_04
+    pos_03 ---|0⚔ 0◇| pos_04
+    </pre>
+    </div>
+
+    <h2>Positions</h2>
+    
+    <div class="position-card" style="--position-color: #2563eb">
+        <h3><a href="positions/pos_00.html">This position uniquely argues that dietary cholesterol, particularly from eggs, does not significantly impact blood cholesterol levels or cardiovascular risk, challenging traditional dietary restrictions based on cholesterol content.</a></h3>
+        <p>This position emphasizes that extensive research shows no significant link between egg consumption and increased heart disease or mortality, and that dietary cholesterol&#39;s role in cardiovascular health is minimal. It advocates for reevaluating dietary guidelines that restrict cholesterol-rich foods like eggs, highlighting their nutritional benefits and the body&#39;s ability to regulate cholesterol levels effectively.</p>
+        <p class="meta">27 claims · Core: Dietary cholesterol intake, including eggs, is not a major factor in the development of cardiovascular disease or adverse health outcomes.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #dc2626">
+        <h3><a href="positions/pos_01.html">This position uniquely argues that, despite mixed evidence, limiting egg consumption—particularly egg yolks—is advisable for people with diabetes to reduce cardiovascular risk.</a></h3>
+        <p>This position emphasizes that evidence suggests a link between high egg consumption and increased heart disease risk in diabetics, advocating for moderation or limitation of egg yolk intake. It acknowledges conflicting studies but prioritizes the potential risk associated with eggs, especially in the context of diabetes management.</p>
+        <p class="meta">4 claims · Core: High egg intake may increase cardiovascular disease risk in individuals with diabetes, warranting dietary restrictions on eggs.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #7c3aed">
+        <h3><a href="positions/pos_02.html">Eggs are a preferable breakfast option compared to sugary, refined grain-based foods, but not as beneficial as whole grains and plant-based proteins for heart health.</a></h3>
+        <p>This position argues that eggs are a superior breakfast choice over sugary, refined grains, emphasizing their nutritional benefits. However, it acknowledges that for optimal heart health, whole grains and plant-based proteins are more advantageous, setting eggs apart from less healthy options but not as ideal as the best plant-based choices.</p>
+        <p class="meta">1 claims · Core: Eggs are a better breakfast choice than sugary, refined grain-based options.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #059669">
+        <h3><a href="positions/pos_03.html">Dietary cholesterol, such as that found in eggs, does not significantly increase cardiovascular disease risk in healthy individuals, unlike saturated and trans fats.</a></h3>
+        <p>This position argues that dietary cholesterol, including eggs, is not a major contributor to heart disease risk. Instead, it emphasizes that saturated and trans fats are the main dietary culprits in increasing cardiovascular risk. Therefore, foods high in cholesterol are not necessarily harmful if they are low in saturated fats, challenging the notion that all cholesterol-rich foods are detrimental.</p>
+        <p class="meta">4 claims · Core: The primary factor influencing heart disease risk is the intake of saturated and trans fatty acids, not dietary cholesterol.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #2563eb">
+        <h3><a href="positions/pos_04.html">This position uniquely argues that eggs are a valuable, nutrient-rich food that can be included in a diet despite their cholesterol content, emphasizing their affordability and nutritional benefits.</a></h3>
+        <p>This position highlights that eggs are an affordable and nutrient-dense food, rich in high-quality protein and micronutrients, and distinguishes itself by asserting that their cholesterol content does not outweigh their nutritional benefits. It challenges the notion that dietary cholesterol from eggs is inherently problematic, emphasizing their role as a healthy food choice.</p>
+        <p class="meta">2 claims · Core: Eggs are a nutritious, affordable food source that provides essential nutrients with minimal saturated fats, and their cholesterol content should not be a reason to avoid them.</p>
+    </div>
+    
+    
+
+    
+    <h2>Live Cruxes</h2>
+    <p>Empirical claims whose resolution would most change the picture:</p>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.10</span>
+        <a href="cruxes/crux_00.html">Research from two large prospective cohort studies found that up to one egg per day is not associated with increased hea</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.08</span>
+        <a href="cruxes/crux_01.html">Higher intake of egg (≥7 egg/wk compared with &lt;1 egg/wk intake) was not significantly associated with blood lipids in th</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 29%"></span></span>
+        <small>conf: 0.30</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.05</span>
+        <a href="cruxes/crux_02.html">Higher egg intake (≥7 egg/wk compared with &lt;1 egg/wk intake) was not significantly associated with composite outcome in </a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill medium" style="width: 43%"></span></span>
+        <small>conf: 0.43</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.02</span>
+        <a href="cruxes/crux_03.html">Higher egg intake (≥7 egg/wk compared with &lt;1 egg/wk intake) was not significantly associated with total mortality in th</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill medium" style="width: 43%"></span></span>
+        <small>conf: 0.43</small>
+    </div>
+    
+    
+    
+
+    <h2>Performed Settling</h2>
+    
+    
+    <div class="settling-ok">
+        <strong>✓ No performed settling detected</strong>
+        <p>No verdict claims found</p>
+    </div>
+    
+    
+
+    
+    <h2>Empty Chairs</h2>
+    <p>Perspectives missing from the discourse:</p>
+    
+    <div class="empty-chair">
+        <strong>Long-term randomized controlled trials (RCTs) specifically isolating egg consumption effects on cardiovascular outcomes</strong>
+        <p>Most current evidence relies on observational cohort studies, which can show associations but not causation; RCTs would provide stronger causal evidence on eggs&#39; health impacts.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Views from populations with diverse genetic backgrounds and dietary patterns, especially non-Western countries</strong>
+        <p>Most studies and positions appear based on Western populations; genetic and cultural dietary differences may influence how eggs affect health, limiting generalizability.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Stakeholder views from patients with established cardiovascular disease or other chronic conditions beyond diabetes</strong>
+        <p>The debate includes diabetes but lacks perspectives from those with existing heart disease or other metabolic disorders who may respond differently to egg consumption.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Environmental and ethical considerations related to egg production and consumption</strong>
+        <p>Health debates often intersect with sustainability and animal welfare concerns, which influence dietary recommendations and consumer choices but are absent here.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Evidence on the impact of egg consumption on other health outcomes such as cancer, cognitive function, or eye health</strong>
+        <p>Eggs contain nutrients relevant to multiple health domains; focusing solely on cardiovascular risk overlooks broader health implications.</p>
+    </div>
+    
+    
+
+    <h2>Sources</h2>
+    <ul class="source-list">
+    <li>Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality (JAMA)</li><li>Dietary cholesterol and the lack of evidence in cardiovascular disease</li><li>Egg consumption and cardiovascular disease: a systematic review and meta-analysis</li><li>Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies</li>
+    </ul>
+
+    <div class="footer">Generated by Epistack-Adversarial · Compliance-aware epistemic verification · <a href="https://github.com/rkstu/epistack-adversarial">GitHub</a></div>
+</body>
+</html>

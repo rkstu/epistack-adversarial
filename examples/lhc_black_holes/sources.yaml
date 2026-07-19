@@ -1,0 +1,73 @@
+# LHC Black Holes Case Study — Source Registry
+# FLF Epistemic Case Study Competition
+#
+# This case is "settled science" — essentially no serious physicist believes
+# the LHC will produce dangerous black holes. Test: can the system articulate
+# WHY it's settled, map argument dependencies, and find the weakest speculative link?
+
+case_name: lhc_black_holes
+domain: particle physics and cosmology
+domain_facts:
+  - The Large Hadron Collider operates at energies up to 13 TeV
+  - Cosmic rays hit Earth's atmosphere at far higher energies than the LHC produces
+  - Hawking radiation is theoretically predicted but never observed
+  - Micro black holes would require extra dimensions to form at LHC energies
+  - The LHC has been operating since 2008 without incident
+
+questions:
+  - "Could the LHC create dangerous black holes that destroy the Earth?"
+  - "What are the theoretical and observational reasons the LHC is safe?"
+  - "What is the weakest link in the safety argument?"
+
+sources:
+  - url: "https://home.cern/science/physics/extra-dimensions-gravitons-and-tiny-black-holes"
+    title: "CERN: Extra Dimensions, Gravitons, and Tiny Black Holes"
+    type: blog
+    author: "CERN Communications"
+    date_published: "2024-01-01"
+    credibility_signals:
+      peer_reviewed: false
+      known_reliable: true
+      notes: "Official CERN explainer on why micro black holes at LHC are safe"
+
+  - url: "https://cds.cern.ch/record/1111112/files/LHCSAFETY-2008-002.pdf"
+    title: "Review of the Safety of LHC Collisions (LSAG Report)"
+    type: paper
+    author: "LHC Safety Assessment Group (Ellis, Giudice, Mangano, Tkachev, Wiedemann)"
+    date_published: "2008-06-20"
+    manual_fallback: "data/lhc_black_holes/sources/lsag_safety_report.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 200
+      notes: "Definitive safety assessment commissioned by CERN. Reviewed by external panel."
+
+  - url: "https://arxiv.org/abs/0806.3414"
+    title: "Study of potentially dangerous events during heavy-ion collisions at the LHC"
+    type: paper
+    author: "Busza, Jaffe, Sandweiss, Wilczek"
+    date_published: "2008-06-20"
+    manual_fallback: "data/lhc_black_holes/sources/busza_2008.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 100
+      author_h_index: 80
+      notes: "Nobel laureate (Wilczek) co-author. Cosmic ray argument formalized."
+
+  - url: "https://en.wikipedia.org/wiki/Safety_of_particle_collisions_at_the_Large_Hadron_Collider"
+    title: "Safety of particle collisions at the Large Hadron Collider (Wikipedia)"
+    type: blog
+    author: "Wikipedia editors"
+    date_published: "2024-06-01"
+    credibility_signals:
+      peer_reviewed: false
+      notes: "Comprehensive overview of safety arguments and historical concerns"
+
+  - url: "https://www.scientificamerican.com/article/the-black-hole-case/"
+    title: "The Black Hole Case: Testing Gravity Against the Cosmic Censor"
+    type: blog
+    author: "Scientific American"
+    date_published: "2022-03-15"
+    credibility_signals:
+      peer_reviewed: false
+      known_reliable: true
+      notes: "Accessible explanation of why LHC black holes are not dangerous"

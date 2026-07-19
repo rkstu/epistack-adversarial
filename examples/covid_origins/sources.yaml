@@ -24,6 +24,8 @@ sources:
     type: blog
     author: "Scott Alexander"
     date_published: "2024-03-15"
+    contains_verdict: true
+    verdict_position: "zoonosis"
     credibility_signals:
       peer_reviewed: false
       citation_count: 50
@@ -36,6 +38,9 @@ sources:
     type: official_doc
     author: "Judge Will (anonymous)"
     date_published: "2024-02-01"
+    contains_verdict: true
+    verdict_position: "zoonosis"
+    manual_fallback: "data/covid_origins/sources/judge_will_decision.txt"
     credibility_signals:
       peer_reviewed: false
       notes: "Independent judge appointed for the $100K debate"
@@ -45,6 +50,9 @@ sources:
     type: official_doc
     author: "Judge Eric (anonymous)"
     date_published: "2024-02-01"
+    contains_verdict: true
+    verdict_position: "zoonosis"
+    manual_fallback: "data/covid_origins/sources/judge_eric_decision.txt"
     credibility_signals:
       peer_reviewed: false
       notes: "Second independent judge for the $100K debate"
@@ -72,6 +80,7 @@ sources:
     title: "Rootclaim vs Peter Miller Debate — Session 1"
     type: debate_transcript
     date_published: "2024-01-15"
+    manual_fallback: "data/covid_origins/sources/rootclaim_debate_session1.txt"
     credibility_signals:
       notes: "Video transcript of the formal judged debate"
 
@@ -79,6 +88,7 @@ sources:
     title: "Rootclaim vs Peter Miller Debate — Session 2"
     type: debate_transcript
     date_published: "2024-01-22"
+    manual_fallback: "data/covid_origins/sources/rootclaim_debate_session2.txt"
     credibility_signals:
       notes: "Video transcript of the formal judged debate"
 
@@ -86,6 +96,7 @@ sources:
     title: "Rootclaim vs Peter Miller Debate — Session 3"
     type: debate_transcript
     date_published: "2024-01-29"
+    manual_fallback: "data/covid_origins/sources/rootclaim_debate_session3.txt"
     credibility_signals:
       notes: "Video transcript of the formal judged debate"
 

@@ -1,0 +1,70 @@
+# Epistack Configuration
+# Single source of truth — change provider/models/thresholds HERE only.
+# All pipeline modules read from this via epistack.config.get_config()
+
+# ─── Model Assignments ───────────────────────────────────────────────────────
+# Keys reference entries in config.py MODELS dict.
+# To switch provider: just change the model key (e.g., "deepseek-v4-flash" → "claude-sonnet")
+models:
+  # Speed-optimized: gpt-4.1-mini (3s, quality) + gpt-4.1-nano (3s, cheapest)
+  # Previous: deepseek-v4-pro was 7s/call. GPT-4.1-mini = 2.3× faster, same quality.
+  extraction: "gpt-4.1-mini"              # Claim extraction (fast + quality)
+  verification_nli: "gpt-4.1-nano"        # Layer 3: NLI entailment (batch, cheap)
+  verification_cross: "gpt-4.1-nano"      # Layer 4: Cross-provider check (batch)
+  relationship_batch: "gpt-4.1-nano"      # Edge classification (batch, cheapest)
+  relationship_confirm: "gpt-4.1-mini"    # Contradiction confirmation (needs quality)
+  discourse_label: "gpt-4.1-nano"         # Position labeling (batch)
+  discourse_crux: "gpt-4.1-mini"          # Crux identification (needs reasoning)
+  discourse_empty: "gpt-4.1-mini"         # Empty chair detection (needs reasoning)
+  embedding: "embedding-small"            # Claim embeddings (OpenAI)
+
+# ─── Extraction ──────────────────────────────────────────────────────────────
+extraction:
+  max_claims_per_source: 50
+  claims_per_chunk: 5
+  chunk_size: 8000
+  chunk_overlap: 500
+  min_quote_length: 10
+  temperature: 0.0
+
+# ─── Verification ────────────────────────────────────────────────────────────
+verification:
+  layer1_enabled: true   # Quote containment ($0)
+  layer2_enabled: true   # Overclaiming regex ($0)
+  layer3_enabled: true   # NLI entailment
+  layer4_enabled: true   # Cross-provider
+  layer4_only_top_pct: 0.1
+
+# ─── Relationships ───────────────────────────────────────────────────────────
+relationships:
+  cosine_threshold: 0.6              # Within-source: high threshold (same author, same vocabulary)
+  cross_source_cosine_threshold: 0.4 # Cross-source: lower because opposing claims use different vocabulary (validated: 183 contradictions at 0.4 vs 3 at 0.6)
+  batch_size: 15                     # Pairs per LLM classification call (cost optimization)
+  dedup_merge_threshold: 0.92        # Auto-merge: >92% similarity = definitely same claim
+  dedup_check_threshold: 0.80        # Gray zone: 80-92% → LLM check "are these the same?"
+  embedding_persist: true            # Save to embeddings.npz for reuse in discourse.py
+
+# ─── Confidence ──────────────────────────────────────────────────────────────
+confidence:
+  correlation_threshold: 0.25        # Single-linkage clustering: >25% provenance overlap = correlated
+  empirical_default: 0.5             # Prior for claims with no supporting evidence
+  assessment_default: 0.35           # Lower prior for editorial judgments (not independent evidence)
+  assessment_evidence_weight: 0.3    # When assessments support empirical claims, strength × 0.3 (one person's opinion ≠ independent evidence)
+  supersession_decay_days: 365       # Old evidence decays max 30% over 1 year (FPF arXiv:2601.21116)
+  supersession_max_decay: 0.3        # Cap: low-confidence can't suppress high-confidence even with time
+
+# ─── Crux Detection ─────────────────────────────────────────────────────────
+crux:
+  decay: 0.7    # Exponential decay per BFS hop (distant claims matter less). 0.7^3 = 0.34 at depth 3.
+  max_depth: 20 # BFS traversal limit (prevents runaway on cyclic-like graphs)
+
+# ─── Discourse ───────────────────────────────────────────────────────────────
+discourse:
+  valid_cluster_range: [2, 8]
+  fallback_to_llm: true
+
+# ─── Budget ──────────────────────────────────────────────────────────────────
+budget:
+  dev_budget: 5.0         # $ cap per dev/test session
+  production_budget: 20.0 # $ cap per case study run
+  warn_at_pct: 0.8       # Warn at 80% spent

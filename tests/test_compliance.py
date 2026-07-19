@@ -1,9 +1,10 @@
 """Tests for compliance-trap detection — validates G3 diagnostic."""
 
-import sys
-sys.path.insert(0, "../src")
-
-from epistack.compliance_detector import detect_compliance_pressure, apply_m2_defense, apply_m3_defense
+from epistack.compliance_detector import (
+    detect_compliance_pressure,
+    apply_m2_defense,
+    apply_m3_defense,
+)
 
 
 def test_g1_baseline():
@@ -75,16 +76,3 @@ def test_safe_prompt_no_modification():
     result = detect_compliance_pressure(prompt)
     assert not result.above_threshold
     assert result.g_level <= 2
-
-
-if __name__ == "__main__":
-    test_g1_baseline()
-    test_g2_mild()
-    test_g3_threshold()
-    test_g3_bedrock_style()
-    test_g4_strong()
-    test_g5_survival()
-    test_m2_defense()
-    test_m3_defense()
-    test_safe_prompt_no_modification()
-    print("All compliance detector tests passed!")

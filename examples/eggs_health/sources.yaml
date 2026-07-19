@@ -1,0 +1,75 @@
+# Eggs & Health Case Study — Source Registry
+# FLF Epistemic Case Study Competition
+#
+# This case is "vague/open-ended" — "Are eggs good for you?" has no single answer.
+# Test: can the system decompose a vague question into tractable sub-questions
+# and detect when studies are asking DIFFERENT questions (framework mismatches)?
+
+case_name: eggs_health
+domain: nutrition and epidemiology
+domain_facts:
+  - One large egg contains about 186mg of cholesterol (all in the yolk)
+  - Dietary cholesterol was previously thought to directly raise blood cholesterol
+  - The 2015-2020 Dietary Guidelines removed the 300mg/day cholesterol limit
+  - Observational studies can show correlation but not causation
+  - Randomized controlled trials (RCTs) can show causation but in artificial conditions
+
+questions:
+  - "Are eggs good or bad for health?"
+  - "Does egg consumption increase cardiovascular disease risk?"
+  - "Why do observational studies and RCTs often reach different conclusions about eggs?"
+
+sources:
+  - url: "https://www.bmj.com/content/368/bmj.m513"
+    title: "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies"
+    type: paper
+    author: "Zhong et al."
+    date_published: "2020-03-04"
+    manual_fallback: "data/eggs_health/sources/harvard_eggs.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 400
+      notes: "Using Harvard Nutrition Source as accessible substitute covering same findings"
+
+  - url: "https://pubmed.ncbi.nlm.nih.gov/31965140/"
+    title: "Egg consumption and cardiovascular disease: a systematic review and meta-analysis"
+    type: paper
+    author: "Xu et al."
+    date_published: "2020-01-21"
+    manual_fallback: "data/eggs_health/sources/xu_2020_meta.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 150
+      notes: "Meta-analysis of 28 studies. Found NO significant association for up to 1 egg/day."
+
+  - url: "https://www.ahajournals.org/doi/10.1161/JAHA.119.012259"
+    title: "Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality (JAMA)"
+    type: paper
+    author: "Zhong, Allen, et al."
+    date_published: "2019-03-19"
+    manual_fallback: "data/eggs_health/sources/soliman_2018.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 800
+      notes: "Using Soliman 2018 PMC review as accessible substitute — covers RCT evidence showing dietary cholesterol has minimal effect"
+
+  - url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6024687/"
+    title: "Dietary cholesterol and the lack of evidence in cardiovascular disease"
+    type: paper
+    author: "Soliman"
+    date_published: "2018-06-01"
+    manual_fallback: "data/eggs_health/sources/soliman_2018.txt"
+    credibility_signals:
+      peer_reviewed: true
+      citation_count: 200
+      notes: "Review arguing dietary cholesterol has minimal effect on blood cholesterol for most people. RCT evidence."
+
+  - url: "https://www.hsph.harvard.edu/nutritionsource/food-features/eggs/"
+    title: "Eggs - The Nutrition Source (Harvard T.H. Chan School of Public Health)"
+    type: blog
+    author: "Harvard School of Public Health"
+    date_published: "2024-01-01"
+    credibility_signals:
+      peer_reviewed: false
+      known_reliable: true
+      notes: "Balanced summary acknowledging both observational and interventional evidence. Recommends moderation."

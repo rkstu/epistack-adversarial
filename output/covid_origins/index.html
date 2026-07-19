@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true});</script>
+    <title>COVID-19 Origins — Epistack Discourse Map</title>
+</head>
+<body>
+    <h1>COVID-19 Origins</h1>
+    <p class="subtitle">Epistack Discourse Map — structural illumination of disagreement</p>
+
+    <div class="stats">
+        <div class="stat-card"><div class="number">214</div><div class="label">Claims</div></div>
+        <div class="stat-card"><div class="number">1040</div><div class="label">Edges</div></div>
+        <div class="stat-card"><div class="number">3</div><div class="label">Positions</div></div>
+        <div class="stat-card"><div class="number">10</div><div class="label">Cruxes</div></div>
+        <div class="stat-card"><div class="number">5</div><div class="label">Sources</div></div>
+    </div>
+
+    <h2>Discourse Structure</h2>
+    <div class="mermaid-container">
+    <pre class="mermaid">
+graph LR
+    pos_00["This position defends the validity and r (6)"]
+    pos_01["This position uniquely argues that the e (76)"]
+    pos_02["This position fundamentally opposes the  (62)"]
+    pos_00 ---|0⚔ 0◇| pos_01
+    pos_00 ---|0⚔ 0◇| pos_02
+    pos_01 ---|0⚔ 31◇| pos_02
+    </pre>
+    </div>
+
+    <h2>Positions</h2>
+    
+    <div class="position-card" style="--position-color: #2563eb">
+        <h3><a href="positions/pos_00.html">This position defends the validity and robustness of Rootclaim&#39;s Bayesian reasoning, emphasizing that it appropriately weighs evidence and accounts for biases, thereby supporting its conclusions despite potential complexities or ambiguities.</a></h3>
+        <p>This position argues that Rootclaim&#39;s Bayesian approach is fundamentally sound and capable of overcoming common cognitive biases, with its methodology explicitly designed to account for trivial biases and complexities. It maintains that, despite some criticisms of presentation or interpretation, the core Bayesian reasoning remains a valid and valuable tool for evidence assessment in the debate.</p>
+        <p class="meta">6 claims · Core: Rootclaim’s Bayesian methodology, when properly applied, provides a reliable framework for evidence evaluation that transcends human biases and leads to sound conclusions.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #dc2626">
+        <h3><a href="positions/pos_01.html">This position uniquely argues that the evidence strongly favors a laboratory origin of COVID-19, emphasizing genetic anomalies, laboratory research activities, and statistical improbabilities associated with zoonotic spillover, thereby challenging the mainstream zoonosis hypothesis.</a></h3>
+        <p>This position contends that the unique genetic characteristics of SARS-CoV-2, such as the fully formed furin cleavage site and the context of laboratory research, point to a lab leak origin. It challenges the zoonosis hypothesis by highlighting statistical improbabilities and the likelihood of laboratory accidents, asserting that the preponderance of evidence favors a laboratory source over natural spillover.</p>
+        <p class="meta">76 claims · Core: The most fundamental claim is that the genetic features of SARS-CoV-2, particularly the furin cleavage site and the proximity of the outbreak to the Wuhan Institute of Virology, are more consistent with laboratory manipulation or accidental release than natural emergence.</p>
+    </div>
+    
+    <div class="position-card" style="--position-color: #7c3aed">
+        <h3><a href="positions/pos_02.html">This position fundamentally opposes the consensus that the COVID-19 pandemic originated from natural zoonosis, instead arguing that the lab leak hypothesis is the most credible explanation based on available evidence and analysis.</a></h3>
+        <p>This position emphasizes that credible early infection evidence aligns with the lab leak hypothesis and that key assumptions used to dismiss it are flawed. It challenges the reliability of zoonotic explanations, highlighting potential biases and uncertainties in natural origin theories, and underscores the plausibility of a lab-related origin based on the timing, location, and scientific analyses.</p>
+        <p class="meta">62 claims · Core: The pandemic most likely resulted from a laboratory leak rather than natural animal-to-human transmission.</p>
+    </div>
+    
+    
+
+    <h2>Live Cruxes</h2>
+    <p>Empirical claims whose resolution would most change the picture:</p>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.61</span>
+        <a href="cruxes/crux_00.html">Wuhan Institute of Virology (WIV) was conducting gain-of-function research in BSL-2 conditions, which is medium security</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.24</span>
+        <a href="cruxes/crux_01.html">Saar pointed out that having very strong Bayesian evidence on both sides of the lab leak versus zoonosis argument sugges</a>
+        <br><span class="badge badge-methodological">methodological</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.23</span>
+        <a href="cruxes/crux_02.html">The most important basis for the decision is the relative epidemiological proximity of the earliest indicators of covid </a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 28%"></span></span>
+        <small>conf: 0.28</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.21</span>
+        <a href="cruxes/crux_03.html">Peter acknowledged the coincidence of the epidemic starting near Wuhan’s coronavirus lab but argued that other large cit</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.20</span>
+        <a href="cruxes/crux_04.html">Peter Miller, a physics student and programmer, took up Saar’s $100,000 bet on the lab leak hypothesis and became over 9</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.17</span>
+        <a href="cruxes/crux_05.html">All of the cases at the wet market, including the first detected case, were Lineage B, and Lineage A wasn’t discovered u</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.17</span>
+        <a href="cruxes/crux_06.html">Wet markets are natural places for superspreader events, as COVID clusters concentrate in wet markets even when there is</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.14</span>
+        <a href="cruxes/crux_07.html">The DEFUSE program involved collecting new coronaviruses from bat caves and performing gain-of-function research by addi</a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.13</span>
+        <a href="cruxes/crux_08.html">Rootclaim accounts for the possibility that scientists might deliberately pick more natural-looking features over design</a>
+        <br><span class="badge badge-methodological">methodological</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    <div class="crux-card">
+        <span class="crux-score">0.12</span>
+        <a href="cruxes/crux_09.html">The Huanan Seafood Market was sanitized and closed on the morning of January 1, 2020, and samples were collected on and </a>
+        <br><span class="badge badge-empirical">empirical</span>
+        <span class="confidence-bar"><span class="confidence-fill low" style="width: 22%"></span></span>
+        <small>conf: 0.23</small>
+    </div>
+    
+    
+
+    <h2>Performed Settling</h2>
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>46 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: unresolved_cruxes, framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>46 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: unresolved_cruxes, framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>3 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: unresolved_cruxes, framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>5 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: unresolved_cruxes, framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>17 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks</p>
+        <p><small>Severity: 50% · Type: unresolved_cruxes, framework_adjudication</small></p>
+    </div>
+    
+    
+    
+    <div class="settling-alert">
+        <strong>⚠️ Performed Settling Detected</strong>
+        <p>1 contested dependencies (confidence 0.3-0.7)</p>
+        <p><small>Severity: 20% · Type: unresolved_cruxes</small></p>
+    </div>
+    
+    
+
+    
+    <h2>Empty Chairs</h2>
+    <p>Perspectives missing from the discourse:</p>
+    
+    <div class="empty-chair">
+        <strong>Ecological and wildlife surveillance data on coronavirus diversity and spillover events</strong>
+        <p>Comprehensive ecological data could provide direct evidence about natural reservoirs and transmission pathways, strengthening or weakening the zoonosis hypothesis beyond genetic and lab-based analyses.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Insights from frontline epidemiologists and public health officials involved in early outbreak investigations</strong>
+        <p>These stakeholders have firsthand knowledge of case clusters, contact tracing, and environmental sampling, which are critical for understanding the initial spread and origin context.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Independent forensic virology analyses from international scientific bodies without conflicts of interest</strong>
+        <p>Third-party, transparent investigations could reduce bias and increase confidence in conclusions about viral origin, addressing concerns about politicization or institutional bias.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Sociopolitical and ethical considerations regarding transparency and data sharing by Chinese authorities</strong>
+        <p>Understanding the impact of information access limitations is crucial for evaluating the completeness and reliability of the evidence base.</p>
+    </div>
+    
+    <div class="empty-chair">
+        <strong>Comparative analysis of other zoonotic outbreaks and their epidemiological patterns</strong>
+        <p>Contextualizing SARS-CoV-2 origins within broader zoonotic disease emergence can highlight typical versus atypical features, informing the plausibility of competing hypotheses.</p>
+    </div>
+    
+    
+
+    <h2>Sources</h2>
+    <ul class="source-list">
+    <li>An Inconvenient Probability — Bayesian Analysis of COVID Origins</li><li>Judge Eric&#39;s Decision — Rootclaim COVID Origins Debate</li><li>Judge Will&#39;s Decision — Rootclaim COVID Origins Debate</li><li>Practically A Book Review: Rootclaim COVID Origins Debate</li><li>Rootclaim Response to Scott Alexander&#39;s Analysis</li>
+    </ul>
+
+    <div class="footer">Generated by Epistack-Adversarial · Compliance-aware epistemic verification · <a href="https://github.com/rkstu/epistack-adversarial">GitHub</a></div>
+</body>
+</html>

@@ -1,3 +1,3 @@
-"""Epistack-Adversarial: Adversarial epistemic verification for AI-assisted knowledge bases."""
+"""Epistack-Adversarial: Compliance-aware epistemic verification."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

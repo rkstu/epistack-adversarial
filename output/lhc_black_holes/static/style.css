@@ -1,0 +1,163 @@
+/* Epistack Discourse Map — CSS
+   Inspired by daisyUI/Tabler card patterns. Zero dependencies. */
+
+:root {
+  --color-zoonotic: #2563eb;
+  --color-lab-leak: #dc2626;
+  --color-methodology: #7c3aed;
+  --color-neutral: #6b7280;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.65;
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: #1f2937;
+  background: #fafafa;
+}
+
+h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; color: #111827; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #e5e7eb; color: #111827; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1rem; }
+
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.subtitle { color: #6b7280; font-size: 1.05rem; margin-bottom: 2rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; color: #6b7280; }
+.back-link:hover { color: #2563eb; }
+
+/* Stats grid */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin: 1.5rem 0 2rem; }
+.stat-card { background: white; border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: var(--shadow); }
+.stat-card .number { font-size: 2rem; font-weight: 700; color: #2563eb; }
+.stat-card .label { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Position cards */
+.position-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--position-color, #6b7280);
+  transition: box-shadow 0.2s;
+}
+.position-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.position-card h3 { margin-bottom: 0.5rem; }
+.position-card h3 a { color: #1f2937; font-weight: 600; }
+.position-card h3 a:hover { color: #2563eb; }
+.position-card p { color: #4b5563; font-size: 0.95rem; margin-bottom: 0.4rem; }
+.position-card .meta { color: #9ca3af; font-size: 0.85rem; }
+
+/* Crux cards */
+.crux-card {
+  background: white;
+  border: 2px solid #fbbf24;
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin: 0.8rem 0;
+  box-shadow: var(--shadow);
+}
+.crux-card .crux-score { font-size: 1.5rem; font-weight: 700; color: #d97706; margin-right: 0.5rem; }
+.crux-card a { color: #1f2937; font-weight: 500; }
+.crux-card a:hover { color: #2563eb; }
+
+/* Settling alert */
+.settling-alert {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.settling-alert strong { color: #92400e; }
+.settling-alert p { color: #78350f; margin-top: 0.3rem; }
+
+.settling-ok {
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.settling-ok strong { color: #065f46; }
+
+/* Empty chair */
+.empty-chair {
+  border-left: 4px solid #8b5cf6;
+  padding: 0.8rem 1.2rem;
+  margin: 0.6rem 0;
+  background: #faf5ff;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.empty-chair strong { color: #6d28d9; }
+
+/* Badges / tags */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.3rem;
+}
+.badge-supports { background: #dcfce7; color: #166534; }
+.badge-contradicts { background: #fee2e2; color: #991b1b; }
+.badge-frames { background: #dbeafe; color: #1e40af; }
+.badge-qualifies { background: #fef3c7; color: #92400e; }
+.badge-depends { background: #f3e8ff; color: #6b21a8; }
+.badge-empirical { background: #ecfdf5; color: #065f46; }
+.badge-assessment { background: #fef3c7; color: #78350f; }
+.badge-methodological { background: #ede9fe; color: #5b21b6; }
+
+/* Confidence bar */
+.confidence-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; width: 120px; display: inline-block; vertical-align: middle; margin: 0 0.5rem; }
+.confidence-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+.confidence-fill.high { background: #16a34a; }
+.confidence-fill.medium { background: #ca8a04; }
+.confidence-fill.low { background: #dc2626; }
+
+/* Claim card (for position detail pages) */
+.claim-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin: 0.6rem 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.claim-card .claim-id { color: #9ca3af; font-size: 0.75rem; font-family: monospace; }
+.claim-card .claim-text { margin: 0.3rem 0; }
+.claim-card .source-quote {
+  border-left: 3px solid #d1d5db;
+  padding-left: 0.8rem;
+  font-style: italic;
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Mermaid diagram container */
+.mermaid-container { background: white; border-radius: var(--radius); padding: 1.5rem; margin: 1.5rem 0; box-shadow: var(--shadow); text-align: center; }
+
+/* Source list */
+.source-list { list-style: none; padding: 0; }
+.source-list li { padding: 0.3rem 0; color: #4b5563; font-size: 0.9rem; }
+.source-list li::before { content: "📄 "; }
+
+/* Footer */
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #9ca3af; font-size: 0.8rem; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat-card .number { font-size: 1.5rem; }
+}
