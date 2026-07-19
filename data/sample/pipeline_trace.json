@@ -1,0 +1,213 @@
+{
+  "_description": "End-to-end trace for clm_0037 (WIV gain-of-function in BSL-2, top crux score 0.61). Shows full lifecycle: extraction \u2192 verification \u2192 edges \u2192 confidence \u2192 settling \u2192 position \u2192 challenge.",
+  "1_claim_extracted": {
+    "event_id": "evt_000019",
+    "event_type": "claim.asserted",
+    "tx": 19,
+    "timestamp": "2026-06-27T17:23:26Z",
+    "actor": "pipeline:extraction",
+    "method": "llm_extraction",
+    "supersedes": null,
+    "payload": {
+      "claim_id": "clm_0037",
+      "statement": {
+        "natural_language": "Wuhan Institute of Virology (WIV) was conducting gain-of-function research in BSL-2 conditions, which is medium security and considered irresponsible for such infectious viruses, increasing the odds of a lab leak."
+      },
+      "relevant_quote": "Usually, research with potentially dangerous coronaviruses is done in BSL-3 or 4, ie high to very-high security. But WIV was irresponsibly doing it in BSL-2, ie medium security. The researchers weren\u2019t even required to wear masks. In general, about 1/500 labs will leak any given pathogen they\u2019re working on (?!). But because WIV was researching such an infectious virus in such an irresponsible way, the odds of a leak were much higher.",
+      "quote_verified": true,
+      "category": "empirical",
+      "strength_of_evidence": "expert_opinion",
+      "assertion_strength": "probable",
+      "tags": [
+        "biosafety",
+        "lab leak",
+        "virology"
+      ],
+      "source_title": "Practically A Book Review: Rootclaim COVID Origins Debate",
+      "source_url": "https://www.astralcodexten.com/p/practically-a-book-review-rootclaim",
+      "chunk_index": 3,
+      "overclaiming_flags": [],
+      "extraction_model": "extraction",
+      "compliance_pressure": false,
+      "confidence": 0.5
+    }
+  },
+  "2_edges_detected (29 total, showing diverse types)": [
+    {
+      "event_id": "evt_000393",
+      "event_type": "edge.asserted",
+      "tx": 393,
+      "timestamp": "2026-06-27T17:36:36Z",
+      "actor": "pipeline:relationships",
+      "method": "llm_classification",
+      "supersedes": null,
+      "payload": {
+        "edge_id": "edg_0001",
+        "edge_type": "supports",
+        "source": "clm_0037",
+        "target": "clm_0166",
+        "strength": 0.8,
+        "evidence": "Claim A states that WIV's conduct of gain-of-function research in BSL-2 conditions increased the odds of a lab leak, which directly supports Claim B's assertion that research in BSL-2 or BSL-3 labs may have increased the risk of lab leak.",
+        "cosine_similarity": 0.8154711683976712,
+        "cross_source": true
+      }
+    },
+    {
+      "event_id": "evt_000457",
+      "event_type": "edge.asserted",
+      "tx": 457,
+      "timestamp": "2026-06-27T17:37:17Z",
+      "actor": "pipeline:relationships",
+      "method": "llm_classification",
+      "supersedes": null,
+      "payload": {
+        "edge_id": "edg_0129",
+        "edge_type": "contradicts",
+        "source": "clm_0037",
+        "target": "clm_0076",
+        "strength": 0.8,
+        "evidence": "Claim A suggests WIV's BSL-2 practices increased leak risk, while Claim B compares past lab leaks with larger scale operations and mechanical failures, implying that WIV's setup was less risky, which contradicts the increased risk implied in Claim A.",
+        "cosine_similarity": 0.6515230941251818,
+        "cross_source": true
+      }
+    },
+    {
+      "event_id": "evt_000577",
+      "event_type": "edge.asserted",
+      "tx": 577,
+      "timestamp": "2026-06-27T17:38:35Z",
+      "actor": "pipeline:relationships",
+      "method": "llm_classification",
+      "supersedes": null,
+      "payload": {
+        "edge_id": "edg_0369",
+        "edge_type": "qualifies",
+        "source": "clm_0037",
+        "target": "clm_0054",
+        "strength": 0.8,
+        "evidence": "Claim A discusses irresponsible gain-of-function research increasing lab leak risk, while Claim B emphasizes factors weighing against lab leak, such as the nature of WIV work and epicenter location. Claim A adds conditions that could increase risk, but Claim B presents reasons against it.",
+        "cosine_similarity": 0.5989775258898539,
+        "cross_source": true
+      }
+    },
+    {
+      "event_id": "evt_001624",
+      "event_type": "edge.asserted",
+      "tx": 1624,
+      "timestamp": "2026-06-27T17:55:06Z",
+      "actor": "pipeline:relationships",
+      "method": "llm_confirmation",
+      "supersedes": "evt_001367",
+      "payload": {
+        "edge_id": "edg_1949",
+        "edge_type": "frames_differently",
+        "source": "clm_0037",
+        "target": "clm_0068",
+        "strength": 0.8,
+        "evidence": "Claim A discusses the nature and risk level of WIV's gain-of-function research under BSL-2 conditions, implying increased lab leak risk generally. Claim B focuses specifically on LL's consideration of the pathway of initial lab leak, distinguishing between environmental release and laboratory-acquired infection (LAI). The two claims address different aspects: one about the riskiness of research conditions, the other about the specific hypothesized mechanism of leak. Therefore, they do not logically contradict but rather frame different questions about the lab leak scenario.",
+        "revised_from": "contradicts"
+      }
+    },
+    {
+      "event_id": "evt_000396",
+      "event_type": "edge.asserted",
+      "tx": 396,
+      "timestamp": "2026-06-27T17:36:36Z",
+      "actor": "pipeline:relationships",
+      "method": "llm_classification",
+      "supersedes": null,
+      "payload": {
+        "edge_id": "edg_0007",
+        "edge_type": "supports",
+        "source": "clm_0037",
+        "target": "clm_0267",
+        "strength": 0.75,
+        "evidence": "Claim A emphasizes the irresponsibility of BSL-2 research increasing leak risk, which supports Claim B's observation that WIV's work without masks could have led to infection and spread.",
+        "cosine_similarity": 0.7453580795810033,
+        "cross_source": true
+      }
+    }
+  ],
+  "3_confidence_updated": {
+    "event_id": "evt_001652",
+    "event_type": "claim.rank_changed",
+    "tx": 1652,
+    "timestamp": "2026-06-27T17:55:27Z",
+    "actor": "pipeline:confidence",
+    "method": "dual_model",
+    "supersedes": null,
+    "payload": {
+      "claim_id": "clm_0037",
+      "confidence": 0.225,
+      "confidence_level": "very_low",
+      "evidence_score": 0.5,
+      "dimension_score": 0.45,
+      "cluster_count": 0,
+      "weakest_dimension": "source_quality"
+    }
+  },
+  "4_settling_flag": {
+    "event_id": "evt_001309",
+    "event_type": "meta.flag",
+    "tx": 1309,
+    "timestamp": "2026-06-27T17:45:31Z",
+    "actor": "pipeline:settling",
+    "method": "graph_traversal",
+    "supersedes": null,
+    "payload": {
+      "flag_type": "performed_settling",
+      "verdict_claim_id": "clm_0051",
+      "settling_type": [
+        "unresolved_cruxes",
+        "framework_adjudication"
+      ],
+      "contested_cruxes": [],
+      "severity": 0.989,
+      "explanation": "92 contested dependencies (confidence 0.3-0.7); Adjudicates between incompatible frameworks"
+    }
+  },
+  "5_position": {
+    "event_id": "evt_001314",
+    "event_type": "position.stated",
+    "tx": 1314,
+    "timestamp": "2026-06-27T17:45:36Z",
+    "actor": "pipeline:discourse",
+    "method": "hdbscan_clustering",
+    "supersedes": null,
+    "payload": {
+      "position_id": "pos_00",
+      "label": "Rootclaim employs Bayesian reasoning to evaluate evidence objectively, aiming to mitigate human biases in probabilistic inference.",
+      "summary": "This position advocates for the use of Bayesian reasoning as a means to improve the accuracy and fairness of evidence evaluation, emphasizing that it can transcend human biases and account for common pitfalls like biases and multiple comparisons. While acknowledging potential pitfalls in Bayesian calculations, the position maintains that, with careful application, Bayesian methods are superior to intuitive judgment in probabilistic inference.",
+      "core_commitment": "Bayesian methods, when properly applied, provide a more reliable framework for weighing evidence than intuitive or biased judgment alone.",
+      "member_claims": [
+        "clm_0001",
+        "clm_0119",
+        "clm_0133",
+        "clm_0143",
+        "clm_0161",
+        "clm_0243"
+      ],
+      "strongest_claims": [
+        "clm_0001",
+        "clm_0243"
+      ]
+    }
+  },
+  "6_challenge": {
+    "event_id": "evt_001878",
+    "event_type": "challenge.raised",
+    "tx": 1878,
+    "timestamp": "2026-06-28T09:49:01Z",
+    "actor": "researcher:manual",
+    "method": "manual",
+    "supersedes": null,
+    "payload": {
+      "challenge_id": "chl_1878",
+      "target": "clm_0037",
+      "challenge_type": "evidential",
+      "body": "NIH review board classified the WIV coronavirus research as not meeting the definition of gain-of-function under the HHS P3CO framework, concluding the research did not reasonably anticipate enhanced pandemic potential",
+      "source_url": "https://www.nih.gov/p3co",
+      "source_label": "NIH P3CO Review Board (2018)"
+    }
+  }
+}

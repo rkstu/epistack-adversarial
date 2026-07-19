@@ -124,13 +124,15 @@ events.jsonl (append-only, time-travel, supersession)
      └── HTML Site (Jinja2 + Mermaid CDN)
 ```
 
-15 Python modules, 4,000+ lines, 103 tests.
+15 Python modules, 4,000+ lines, 103 tests. See full rendered diagrams: [Architecture](docs/diagrams/architecture.md) | [COVID Discourse](docs/diagrams/covid_discourse.md) | [Three Cases Compared](docs/diagrams/three_cases.md)
 
 **Key innovations:**
 - **Compliance-trap detection** (arXiv:2605.02398): Detects G3 pressure before every LLM call, applies M2/M3 defenses validated on 5,110 evaluations
 - **`frames_differently` edge type**: Distinguishes framework mismatches from factual contradictions
 - **Performed settling detection**: Detects debates that declared winners without resolving cruxes
 - **Correlated evidence detection**: Prevents N citations of the same paper from counting as N independent lines
+
+**Raw pipeline output**: See [data/sample/](data/sample/) for a committed trace showing the full input→output chain for one claim through all pipeline stages.
 
 ---
 
@@ -153,17 +155,19 @@ Every folder has a `README.md` explaining its purpose.
 
 ```
 epistack-adversarial/
-├── README.md                  # This file
+├── README.md                  # This file — start here
 ├── run_pipeline.py            # Main orchestrator — one command produces full HTML site
 ├── config.yaml                # All parameters (models, thresholds, budget)
 ├── pyproject.toml             # Dependencies (managed with uv)
 │
-├── src/epistack/              # 15-module Python library
+├── src/epistack/              # 15-module Python library (each has docstring)
 ├── examples/                  # Source registries (sources.yaml per case)
 ├── output/                    # Pre-built HTML output (no API key to view)
+├── data/sample/               # Committed pipeline trace — full input→output chain
 ├── tests/                     # 103 tests — all pass without API keys
 ├── scripts/                   # verify.py, smoke_test.py, add_challenge.py
 ├── docs/                      # SUBMISSION.md, METHODOLOGY.md, PIPELINE.md
+│   └── diagrams/             # Mermaid diagrams (rendered by GitHub)
 ├── static/                    # Shared CSS for HTML output
 ├── templates/                 # Reserved for future template extraction
 └── archive/                   # v0 prototype (historical reference only)
