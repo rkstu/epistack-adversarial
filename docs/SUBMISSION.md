@@ -11,11 +11,11 @@ Epistack is a tool for mapping disagreements. Instead of asking an AI "who is ri
 
 We tested it on three cases. The system produced three different diagnoses:
 
-- **COVID origins** is a real unresolved dispute with unresolved claims that matter a lot, and conclusions that went further than the evidence.
+- **COVID origins** is a real dispute with unresolved claims that matter a lot, and conclusions that went further than the evidence.
 - **LHC black holes** is settled — the system identifies this from graph structure, not from a topic label.
 - **Eggs and health** is mostly a framework mismatch — different studies are answering different questions, not disagreeing on facts.
 
-Total cost for all three: **$1**. Total time: **45 minutes**. 103 tests, 72 HTML pages, no hand-designed steps after source selection.
+Total cost for all three: **$1**. Total time: **45 minutes**. 103 tests, 72 HTML pages. After source selection, the pipeline runs automatically.
 
 ---
 
@@ -23,7 +23,7 @@ Total cost for all three: **$1**. Total time: **45 minutes**. 103 tests, 72 HTML
 
 The main finding is that the Rootclaim debate's verdicts look more settled than the underlying evidence warrants. Specifically:
 
-1. **All 9 verdict claims pick winners, but 46 dependency claims remain contested** (confidence between 0.3 and 0.7). The debate declared a resolution; the empirical disagreements underneath are still open. We call this "performed settling" — it's detectable from graph structure: verdict exists + dependencies are contested + the verdict crosses framework boundaries.
+1. **All 9 verdict claims pick winners, but 46 dependency claims remain contested** (confidence between 0.3 and 0.7). The debate declared a resolution; the empirical disagreements underneath are still open. We call this "performed settling": the debate looks resolved on the surface, while the underlying factual questions are still open. It is detectable from graph structure: verdict exists + dependencies are contested + the verdict crosses framework boundaries.
 
 2. **The largest driver of the divergence between analysts is a single starting assumption.** Weissman's Bayesian analysis assigns a prior of P(lab leak) ≈ 1/200 (claim `clm_0168`). Rootclaim evaluates 80% of pandemics that first appear in Wuhan as lab leaks (claim `clm_0159`). That gap — roughly two orders of magnitude in the prior alone — propagates through everything downstream. Both claims are in the system with verified source quotes.
 
@@ -35,25 +35,22 @@ The $100K bet format itself is relevant: both sides are rewarded for giving a co
 
 ---
 
-## See It
+## See It While Reading
 
-Open `output/covid_origins/index.html` in a browser — pre-built, no API key needed.
+Optional but recommended: open `output/covid_origins/index.html` in a browser while reading this submission. The site is pre-built, so you do not need an API key. It lets you check the claims instead of taking my word for them. You can click through the COVID case, inspect the ranked cruxes, and see the source quote behind each extracted claim.
 
-Here's what a crux page looks like. This tells the reader which unresolved claim would change the most downstream conclusions:
+A good page to start with is the top crux:
 
 > **Claim**: "WIV was conducting gain-of-function research in BSL-2 conditions"
-> **Score**: 0.61 (how uncertain it is × how many conclusions depend on it)
-> **Confidence**: 0.23 (heavily contested across sources)
->
-> **What sources say** (each verified against the original text):
-> - ACX: "WIV was irresponsibly doing it in BSL-2, ie medium security. The researchers weren't even required to wear masks."
-> - Judge Will: "The major factors weighing against lab leak were the probability that WIV could carry out DEFUSE style research..."
-> - Weissman: "P0(2019, LL) = ~1/200. This estimate is obviously very rough."
->
-> **If resolved TRUE** → 12 downstream lab-leak claims strengthen
-> **If resolved FALSE** → Lab-leak position loses its strongest empirical anchor
+> **Why it matters**: many downstream lab-leak claims depend on it
+> **Current confidence**: 0.23, meaning the sources contest it heavily
+> **What happens if it is resolved**:
+> - If true, 12 downstream lab-leak claims strengthen
+> - If false, the lab-leak position loses one of its strongest empirical anchors
 
-The full COVID site shows 3 positions (76 + 62 + 6 claims), 10 ranked cruxes, settling alerts on all 9 verdicts, 5 missing perspectives, and full provenance for every claim.
+The point of the page is not to tell you who is right. It shows why this claim matters, which sources discuss it, and what would change if the claim were resolved.
+
+The full COVID site includes 3 positions, 10 ranked cruxes, settling alerts on all 9 verdicts, 5 missing perspectives, and source provenance for every claim.
 
 ---
 
@@ -101,7 +98,7 @@ sources.yaml → Fetch (web/PDF/YouTube/local)
     → Verify (4 layers: quote match → overclaiming → entailment → cross-provider)
     → Store (append-only event log)
     → Detect relationships (embed → cosine similarity → classify edge type)
-    → Score confidence (independent evidence compounds; quality failures kill)
+    → Score confidence (independent evidence compounds; quality failures sharply reduce it)
     → Find cruxes (uncertainty × downstream impact)
     → Map positions (clustering + graph community detection)
     → Detect settling (verdict depends on contested claims?)
@@ -115,7 +112,7 @@ sources.yaml → Fetch (web/PDF/YouTube/local)
 | Decision | What we chose | Why |
 |----------|--------------|-----|
 | How to find cruxes | Uncertainty × downstream impact (structural formula) | Reproducible. A claim that's uncertain AND consequential is more important than one that's just uncertain. Based on sensitivity analysis theory (Chan & Darwiche 2004). |
-| How to handle "different questions" | Separate edge type (`frames_differently`) | The eggs case proves this matters: calling a framework mismatch a "contradiction" misrepresents the debate. |
+| How to handle "different questions" | Separate edge type (`frames_differently`) | The eggs case shows why this matters: calling a framework mismatch a "contradiction" misrepresents the debate. |
 | How to count evidence | Independent lines compound; correlated evidence clusters first | Five citations of one paper shouldn't count five times. We cluster by provenance overlap before combining. |
 | How to prevent fabrication | Check prompt for compliance pressure before sending | Our research (arXiv:2605.02398) shows models fabricate above a specific threshold. We detect and defend before it happens. |
 
@@ -133,7 +130,7 @@ The main failure mode for any AI-assisted epistemic tool is hallucinated or over
 
 3. **Entailment is verified by a second model.** "Does the quote actually support the claim?" catches cases where the AI overstates what the source says (e.g., upgrading "may contribute" to "causes").
 
-4. **Cross-provider checks catch correlated blind spots.** A different model family verifies the highest-stakes claims. 121 verification flags fired across the COVID run — each dropped a fabricated or overstated claim to low confidence rather than silently passing it.
+4. **Cross-provider checks catch correlated blind spots.** A different model family verifies the highest-stakes claims. 121 verification flags fired across the COVID run. Each triggered a confidence penalty instead of silently passing.
 
 **What about deliberate source manipulation?** A low-quality challenge cannot override high-confidence established claims. New evidence must be stronger than the evidence it tries to replace. This makes adversarial flooding harder — you can't drown out well-sourced claims with volume alone.
 
